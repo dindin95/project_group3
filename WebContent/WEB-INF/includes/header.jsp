@@ -87,7 +87,7 @@
 					<a class="dropdown-item" style="font-size: 15px" href="info.do">소개</a>
 					<a class="dropdown-item" style="font-size: 15px" href="#">룸 예약 현황</a> 
 					<a class="dropdown-item" style="font-size: 15px" href="booking.do">룸 예약</a> 
-					<a class="dropdown-item" style="font-size: 15px" href="#">QnA</a>
+					<a class="dropdown-item" style="font-size: 15px" href="question.do">QnA</a>
 				</div>
 			</div>
 			<div class="navbar-translate">
