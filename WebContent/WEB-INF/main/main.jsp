@@ -10,7 +10,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8 ml-auto mr-auto text-center">
-				<h2 class="title">백색소음이 허용된 스터디 카페</h2>
+				<h2 class="title">백색소음이 허용된 스터디 카페</h2> 
 			</div>
 		</div>
 		<!-- <div class="separator separator-primary"></div> -->
