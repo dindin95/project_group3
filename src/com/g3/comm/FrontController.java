@@ -46,7 +46,6 @@ public class FrontController extends HttpServlet {
 		Properties prop = new Properties();
 
 		try {
-			System.out.println("test");
 			prop.load(new FileReader(realpath));
 			Iterator ita =  prop.keySet().iterator();
 

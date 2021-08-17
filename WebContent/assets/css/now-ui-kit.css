@@ -4473,6 +4473,96 @@ Created using IcoMoon - icomoon.io
 }
 
 .nav-tabs>.nav-item>.nav-link i.now-ui-icons {
+<<<<<<< HEAD
+  font-size: 30px;
+  position: relative;
+  top: 1px;
+  margin-right: 3px;
+}
+
+.nav-tabs>.nav-item.disabled>.nav-link,
+.nav-tabs>.nav-item.disabled>.nav-link:hover {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link {
+  color: #FFFFFF;
+}
+
+.nav-tabs.nav-tabs-neutral>.nav-item>.nav-link.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+}
+
+.nav-tabs.nav-tabs-primary>.nav-item>.nav-link.active {
+  background-color: #f96332;
+}
+
+.nav-tabs.nav-tabs-info>.nav-item>.nav-link.active {
+  background-color: #2CA8FF;
+}
+
+.nav-tabs.nav-tabs-danger>.nav-item>.nav-link.active {
+  background-color: #FF3636;
+}
+
+.nav-tabs.nav-tabs-warning>.nav-item>.nav-link.active {
+  background-color: #FFB236;
+}
+
+.nav-tabs.nav-tabs-success>.nav-item>.nav-link.active {
+  background-color: #18ce0f;
+}
+
+.navbar {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  min-height: 53px;
+  margin-bottom: 20px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+}
+
+.navbar a {
+  vertical-align: middle;
+}
+
+.navbar a:not(.btn):not(.dropdown-item) {
+  color: #FFFFFF;
+}
+
+.navbar p {
+  display: inline-block;
+  margin: 0;
+  line-height: 21px;
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+.navbar .navbar-nav.navbar-logo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 49px;
+  top: -4px;
+}
+
+.navbar .navbar-nav .nav-link.btn {
+  padding: 11px 22px;
+}
+
+.navbar .navbar-nav .nav-link.btn.btn-lg {
+  padding: 15px 48px;
+}
+
+.navbar .navbar-nav .nav-link.btn.btn-sm {
+  padding: 5px 15px;
+}
+
+.navbar .navbar-nav .nav-link:not(.btn) {
+  text-transform: uppercase;
+  /* font-size: 0.7142em; */
+=======
   font-size: 14px;
   position: relative;
   top: 1px;
@@ -4561,6 +4651,7 @@ Created using IcoMoon - icomoon.io
 .navbar .navbar-nav .nav-link:not(.btn) {
   text-transform: uppercase;
   font-size: 0.7142em;
+>>>>>>> branch 'master' of https://github.com/dindin95/project_group3.git
   padding: 0.5rem 0.7rem;
   line-height: 1.625rem;
 }
