@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+div.page1 a{
+	text-decoration: none;
+	display: inline-block;
+	float:left;
+	margin-right: 30px; 
+
+}
+
+div.page2 a{
+	display:inline-block;
+	text-decoration:none;
+}
+
+
+div.page3 a{
+	text-decoration: none;
+	display: inline-block;
+	float:left;
+	margin-left:30px; 
+	
+}
