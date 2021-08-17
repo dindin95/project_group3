@@ -19,20 +19,20 @@ public class BookingListService {
 		return service;
 	}
 
-	public List<BookingListDTO> getList() {
+	public List<BookingListDTO> getBookingList() {
 		
 
 		
 		DBConnection dbconn = DBConnection.getDBConn();
 		Connection conn = null;
 		
-		List<BookingListDTO> list = new ArrayList<BookingListDTO>();
+		List<BookingListDTO> bookingList = new ArrayList<BookingListDTO>();
 		
 		try {
 			conn = dbconn.getConnection();
 			
-			BookingListDAO bookingDAO = new BookingListDAO();
-			list = bookingDAO.getList(conn);
+			BookingListDAO bookingListDAO = new BookingListDAO();
+			bookingList  = bookingListDAO.getList(conn);
 			
 		}catch (SQLException | NamingException e) {
 			System.out.println(e);
@@ -40,7 +40,7 @@ public class BookingListService {
 		}finally {
 			if(conn!=null)try {conn.close();}catch(SQLException e) {}
 		}
-		return list;
+		return bookingList ;
 	}
 	
 	
