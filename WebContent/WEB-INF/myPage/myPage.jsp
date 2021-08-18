@@ -19,14 +19,16 @@
 }
 
 .bt{
-	margin-left: 350px;
+	margin-left: 300px;
+    padding: 15px 20px;
+    border:  1px solid #f96332; 
+    width: 550px;
 }
  .bt2{
-	margin-left: 20px;
 	font-size: 1em;
     border-radius: 0.25rem;
-    padding: 15px 48px;
-    width: 300px
+    padding: 15px 20px;
+    width: 500px;
 }
 </style>
 
@@ -55,13 +57,13 @@ String m_id = (String) session.getAttribute("m_id"); // Object 타입이므로 �
         <div class="button-container">
         	<div class="bt">
         		<div class="bt2">
-		          <a href="myPageList.do" class="btn btn-primary btn-round btn-lg">   내정보 보기 </a>	<br>
-		          <a href="#button" class="btn btn-primary btn-round btn-lg">  내정보 수정  </a>	<br>
-		          <a href="#button" class="btn btn-primary btn-round btn-lg">   예약  현황   </a>		<br>
-		          <a href="#button" class="btn btn-primary btn-round btn-lg">문의글 작성 내역</a>		<br>
+		          <a href="myPageList.do" class="btn btn-primary btn-round btn-lg" style="width: 100%">   내정보 보기 </a>	<br>
+		          <a href="myPageModifyForm.do" class="btn btn-primary btn-round btn-lg" style="width: 100%">  내정보 수정  </a>	<br>
+		          <a href="myBookingList.do" class="btn btn-primary btn-round btn-lg" style="width: 100%">   예약  현황   </a>		<br>
+		          <a href="#button" class="btn btn-primary btn-round btn-lg" style="width: 100%">문의글 작성 내역</a>		<br>
 		        </div>
-		          <a href="#button" class="btn btn-primary btn-round btn-lg">    로그아웃    </a>		
-		          <a href="#button" class="btn btn-primary btn-round btn-lg">    회원탈퇴    </a>
+		          <a href="logout.do" class="btn btn-primary btn-round btn-lg" style="width: 250px">    로그아웃    </a>		
+		          <a href="#button" class="btn btn-primary btn-round btn-lg" style="width: 250px">    회원탈퇴    </a>
 	        </div>
         </div>
     </div>
