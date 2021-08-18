@@ -177,6 +177,37 @@ public class QuestionDAO {
 		return dto;
 	}
 
+
+	//insert 입력
+	public void addQuestion(Connection conn, QuestionDTO dto) {
+		// TODO Auto-generated method stub
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("   insert  into   question_g3  (   			");
+		sql.append("      			q_no   						");
+		sql.append("     			, q_title    				");
+		sql.append("     			, q_content    				");
+		sql.append("     			, m_id    					");
+		sql.append("     			, q_writedate     )    		");
+		sql.append("  values  (questionseq.nextval,?,?,?,sysdate  )  		");
+		
+		
+		try(
+			 	PreparedStatement pstmt=conn.prepareStatement(sql.toString());
+				){
+				pstmt.setString(1, dto.getQ_title());
+				pstmt.setString(2, dto.getQ_content());
+				pstmt.setString(3, dto.getM_id());
+				
+				pstmt.executeUpdate();
+				
+		}catch(SQLException e)
+		{
+			System.out.println(e);
+		}
+		
+	}
+	 
 	
 	
 }

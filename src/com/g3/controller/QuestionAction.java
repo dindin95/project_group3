@@ -39,7 +39,7 @@ public class QuestionAction implements Action {
 	    //전체 자료갯수
 		 QuestionService service=QuestionService.getInstance();
 		 int totalcount= service.getTotalCount(search, searchtxt);
-		 int pagepercount= 10;  //1페이지에 보여줄 자료수
+		 int pagepercount= 3;  //1페이지에 보여줄 자료수
 		 
 		 int totalpage=(int) Math.ceil((float)totalcount/pagepercount);
 				 
@@ -49,6 +49,7 @@ public class QuestionAction implements Action {
 		 if(endrow>totalcount)
 			 endrow=totalcount;
 		 
+		 
 		 int blockcount=3;
 		 int startblock=(currpage-1)/blockcount*blockcount+1;
 		 int endblock=startblock+blockcount-1;
@@ -57,8 +58,7 @@ public class QuestionAction implements Action {
 		 {
 			 endblock=totalpage;
 		 }
-		
-		
+		 
 		
 		List<QuestionDTO> list = service.getList(startrow,endrow,search,searchtxt);
 		request.setAttribute("list", list);

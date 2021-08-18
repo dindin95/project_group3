@@ -23,7 +23,7 @@
 <c:set var="searchtxt" value="${requestScope.searchtxt }"></c:set>
 
 <div class="container">
-<button type="button" class="btn btn-secondary pull-right" disabled>글쓰기</button></div>
+<button type="button" class="btn btn-secondary pull-right" onclick="location.href='questionwrite.do'">글쓰기</button></div>
 
 <br>
 <div class="container">
@@ -61,7 +61,7 @@
 
 <ul class="pagination justify-content-center">
 <div class="page1">
- <c:if test="${startblock>=1 }">
+ <c:if test="${startblock>1 }">
     <a href="question.do?curr=${currpage-1}&search=${search}&searchtxt=${searchtxt}"><<</a>
  </c:if>
 </div>

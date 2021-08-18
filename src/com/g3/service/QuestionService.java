@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.naming.NamingException;
 
+import org.apache.tomcat.dbcp.dbcp2.SQLExceptionList;
+
 import com.g3.comm.DBConnection;
 import com.g3.dao.QuestionDAO;
 import com.g3.dto.QuestionDTO;
@@ -87,9 +89,28 @@ public class QuestionService {
 		}finally {
 			if(conn!=null) try { conn.close();} catch(SQLException e) {}
 		}
-			
 			return dto;
 		}
+	
+	public void insertQuestion(QuestionDTO dto) {
+		DBConnection dbconn=DBConnection.getDBConn();
+		Connection conn=null;
+		try {
+			conn=dbconn.getConnection();
+			conn.setAutoCommit(false);
+			
+			QuestionDAO dao = new QuestionDAO();
+			dao.addQuestion(conn, dto);
+			
+			
+			conn.commit();
+		}catch(SQLException|NamingException e)
+		{
+			try{conn.rollback();} catch(SQLException e2) {}
+		}finally {
+			if(conn!=null)try {conn.close();} catch(SQLException e) {}
+		}
+	}
 	
 	
 }
