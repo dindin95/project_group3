@@ -36,6 +36,7 @@
 	
 	.booking {
 	  width: 100%;
+	  background-color: #f96332; <!-- 오렌지 색상 -->
 	}
 	
 	/* Style the horizontal ruler */
@@ -48,7 +49,7 @@
 		margin: 30px 0px;
 	}
 	
-	.inwon {
+	.inwon, .room {
 		margin-right: 20px;
 		margin-top: 10px;
 		font-size: 20px;
@@ -58,8 +59,19 @@
 		margin-right: 5px;
 	}
 	
+	input[type=date] {
+		margin-top: 10px;
+		padding: 3px 20px;
+	}
+	
 	label {
 		font-size: 20px;
+	}
+	
+	.time {
+		padding: 5px 20px;
+		margin-right: 5px;
+		margin-top: 10px;
 	}
 </style>
 </head>
@@ -73,32 +85,82 @@
 	
 	<!-- section -->
 	<div id="section">
-		<form action="" method=""> <!-- post로 바꾸기 -->
+		<form action="bookingInsert.do" method="post">
 			<div class="container">
 		    	<label for="id"><b>아이디</b></label>
-		    	<input type="text" name="id" required readonly="readonly" value="<%=m_id%>"> <!-- 채영언니한테 로그인 받기 -->
+		    	<input type="text" name="m_id" required readonly="readonly" value="<%=m_id%>" style="font-size: 20px">
 		    	<hr>
 		
 				<div class="choice">
-				    <label><b>룸 선택</b></label><br>
-				    <button id="roomA">Room A</button>
-				    <button id="roomB">Room B</button>
-				    <button id="roomC">Room C</button>
+				    <label><b>룸 선택</b></label>
+			    	<br>
+			    	<input type="radio" name="bo_room" id="RoomA" value="1" checked>
+		            <label for="RoomA" class="room">Room A</label>
+		            <input type="radio" name="bo_room" id="RoomB" value="2">
+		            <label for="RoomB" class="room">Room B</label>
+		            <input type="radio" name="bo_room" id="RoomC" value="3">
+		            <label for="RoomC" class="room">Room C</label>
 			    </div>
 			    <hr>
+			    
+			    <div class="choice">
+				    <label><b>날짜 선택</b></label>
+				    <br>
+				    <input type="date" name="bo_date">
+			    </div>
+			    <hr>
+			    
+			    <div class="choice">
+			    	<label><b>시간 선택</b></label>
+			    	<br>
+			    	<select name="startTime" id="startTime" class="time">
+			    		<option value=""> 시작시간 </option>
+	                    <option value="9">09:00</option>
+	                    <option value="10">10:00</option>
+	                    <option value="11">11:00</option>
+	                    <option value="12">12:00</option>
+	                    <option value="13">13:00</option>
+	                    <option value="14">14:00</option>
+	                    <option value="15">15:00</option>
+	                    <option value="16">16:00</option>
+	                    <option value="17">17:00</option>
+	                    <option value="18">18:00</option>
+	                    <option value="19">19:00</option>
+	                    <option value="20">20:00</option>
+	                    <option value="21">21:00</option>
+	                    <option value="22">22:00</option>
+                	</select>
+                	<select name="endTime" id="endTime" class="time">
+			    		<option value=""> 종료시간 </option>
+	                    <option value="9">09:00</option>
+	                    <option value="10">10:00</option>
+	                    <option value="11">11:00</option>
+	                    <option value="12">12:00</option>
+	                    <option value="13">13:00</option>
+	                    <option value="14">14:00</option>
+	                    <option value="15">15:00</option>
+	                    <option value="16">16:00</option>
+	                    <option value="17">17:00</option>
+	                    <option value="18">18:00</option>
+	                    <option value="19">19:00</option>
+	                    <option value="20">20:00</option>
+	                    <option value="21">21:00</option>
+	                    <option value="22">22:00</option>
+                	</select>
+			    </div>
 		
 				<div class="choice">
 			    	<label><b>인원 선택</b></label>
 			    	<br>
-			    	<input type="radio" name="inwon" id="two" value="2명" checked> <!-- 명진언니한테 예약 데이터 어떤 식으로 들어가는 지 물어보기 value -->
+			    	<input type="radio" name="bo_persons" id="two" value="2" checked>
 		            <label for="two" class="inwon">~2명</label>
-		            <input type="radio" name="inwon" id="three" value="3명">
+		            <input type="radio" name="bo_persons" id="three" value="3">
 		            <label for="three" class="inwon">3명</label>
-		            <input type="radio" name="inwon" id="four" value="4명">
+		            <input type="radio" name="bo_persons" id="four" value="4">
 		            <label for="four" class="inwon">4명</label>
-		            <input type="radio" name="inwon" id="five" value="5명">
+		            <input type="radio" name="bo_persons" id="five" value="5">
 		            <label for="five" class="inwon">5명</label>
-		            <input type="radio" name="inwon" id="six" value="6명">
+		            <input type="radio" name="bo_persons" id="six" value="6">
 		            <label for="six" class="inwon">6명</label>
 	            </div>
 	            <hr>
