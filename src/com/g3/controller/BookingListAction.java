@@ -9,29 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.g3.comm.Action;
 import com.g3.comm.Forward;
 
-public class MyPageAction implements Action {
+public class BookingListAction implements Action {
 
 	@Override
 	public Forward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		
-		/*
-		 * Forward forward = new Forward(); forward.setForward(true);
-		 * forward.setPath("/main.jsp?page=login.jsp"); return forward;
-		 */
-		
-		System.out.println("mypage");
-		
-		
+
 		Forward forward = new Forward();
 		forward.setForward(true);
-		forward.setPath("WEB-INF/myPage/myPage.jsp");
+		forward.setPath("WEB-INF/calender/bookingList.jsp");
 
 		return forward;
-		
-		
 	}
 
 }
