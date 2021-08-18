@@ -49,16 +49,16 @@ public class MyPageService {
 	}
 	
 	//회원정보수정
-	public void myPageModify(MyPageDTO dto , String m_id) {
+	public int myPageModify(MyPageDTO dto , String m_id) {
 		DBConnection dbconn = DBConnection.getDBConn();
 		Connection conn = null;
 		
-		
+		int result = 0;
 		try {
 			conn = dbconn.getConnection();
 			conn.setAutoCommit(false);
 			
-			MyPageDAO.myPageModify(conn, dto, m_id);
+			result = MyPageDAO.myPageModify(conn, dto, m_id);
 			
 			conn.commit();
 		}catch (SQLException | NamingException e) {
@@ -69,6 +69,7 @@ public class MyPageService {
 			if(conn!=null)try {conn.close();}catch(SQLException e) {}
 		}
 		
+		return result; 
 	}
 	
 	//나의 예약현황 총갯수 

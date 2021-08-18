@@ -42,7 +42,6 @@ public class MyPageDAO {
 				
 			){
 			
-			System.out.println("d>>>>> " + m_id);
 			pstmt.setString(1, m_id );
 			rs = pstmt.executeQuery();
 			
@@ -63,7 +62,7 @@ public class MyPageDAO {
 	}
 	
 	//회원정보수정
-	public static void myPageModify(Connection conn, MyPageDTO dto, String m_id) {
+	public static int myPageModify(Connection conn, MyPageDTO dto, String m_id) {
 
 		StringBuilder sql = new StringBuilder();
 		sql.append("update member_g3 		 	 ");
@@ -74,6 +73,7 @@ public class MyPageDAO {
 		sql.append("where				 		 ");
 		sql.append("		 m_id = ? 			 ");
 		
+		int result = 0;
 		try (
 				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 				
@@ -84,11 +84,13 @@ public class MyPageDAO {
 			pstmt.setString(3, dto.getM_phone() );
 			pstmt.setString(4, m_id );
 			
-			pstmt.executeUpdate();
+			 result =pstmt.executeUpdate();
 			
 		}catch(SQLException e) {
 			System.out.println(e);
 		}
+		System.out.println(result + "   dao!!");
+		return result;
 	}
 	
 	//나의 예약현황 총갯수 

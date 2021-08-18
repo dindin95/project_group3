@@ -38,43 +38,9 @@ String m_id = (String) session.getAttribute("m_id"); // Object 타입이므로 �
 	  		</tr>
 	  </thead>
 	  
-	  <%-- <tbody>
-	    <c:forEach var="item" items="${list }">
-	      <tr><td><c:out value="${item.q_no}"></c:out></td>
-	      <td><a href="questiondetail.do?q_no=${item.q_no }"><c:out value="${item.q_title }"/></a></td>
-	      <td><c:out value="${item.q_content }"/></td>
-	      <td><c:out value="${item.m_id }"/></td>
-	      <td><c:out value="${item.q_writedate }"/></td></tr>
-	    </c:forEach>
-	  </tbody> --%>
 	  
 	</table>
 </div>
-
-<ul class="pagination justify-content-center">
-<div class="page1">
- <c:if test="${startblock>=1 }">
-    <a href="question.do?curr=${currpage-1}&search=${search}&searchtxt=${searchtxt}"><<</a>
- </c:if>
-</div>
-
-<div class="page2">
-<c:forEach var="index" begin="${startblock }" end="${endblock }">
-  <c:if test="${currpage==index }">
-     <c:out value="${index }"></c:out>
-  </c:if>
-  <c:if test="${currpage!=index }">
-      <a href="question.do?curr=${index}&search=${search}&searchtxt=${searchtxt }">${index}</a> 
-  </c:if>
-</c:forEach>
-</div>
-
-<div class="page3">
-<c:if test="${endblock<totalpage}">
-  <a href="question.do?curr=${currpage+1 }&search=${search}&searchtxt=${searchtxt}">>></a>
-</c:if>
-</div>
-</ul>
 
 <jsp:include page="../includes/footer.jsp" />
 

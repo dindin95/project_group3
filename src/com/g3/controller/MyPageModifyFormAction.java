@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import com.g3.comm.Action;
 import com.g3.comm.Forward;
-import com.g3.dto.LoginDTO;
 import com.g3.dto.MyPageDTO;
 import com.g3.service.MyPageService;
 
@@ -33,9 +32,9 @@ public class MyPageModifyFormAction implements Action {
 		request.setAttribute("dto", dto);
 		
 		Forward forward = new Forward();
-		forward.setForward(false);
-		forward.setPath("myPageList.do?m_id=" + dto.getM_id());
-		
+		forward.setForward(true);
+		forward.setPath("WEB-INF/myPage/myPageModifyForm.jsp");
+
 		return forward;
 		
 		

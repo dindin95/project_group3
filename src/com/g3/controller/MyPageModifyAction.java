@@ -37,11 +37,18 @@ public class MyPageModifyAction implements Action {
 		dto.setM_phone(m_phone);
 
 		MyPageService service = MyPageService.getService();
-		service.myPageModify(dto, m_id);
+		int result = service.myPageModify(dto, m_id);
+		
 		
 		Forward forward = new Forward();
-		forward.setForward(true);
-		forward.setPath("WEB-INF/myPage/myPageList.jsp");
+
+		if(result == 1) {
+			forward.setForward(false);
+			forward.setPath("myPageList.do?m_id=" + m_id);
+		}else{
+			forward.setForward(true);
+			forward.setPath("WEB-INF/myPage/myPageList.jsp");
+		}
 
 		return forward;
 		
