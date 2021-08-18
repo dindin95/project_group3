@@ -11,6 +11,8 @@ import com.g3.comm.Action;
 import com.g3.comm.Forward;
 import com.g3.service.LoginService;
 
+import javafx.scene.control.Alert;
+
 public class LoginResultAction implements Action {
 
 	@Override
@@ -26,14 +28,13 @@ public class LoginResultAction implements Action {
 		
 		LoginService service = LoginService.getService();
 		int result = service.check(m_id,m_pwd);
-
 		
 		Forward f = new Forward();
+		HttpSession session =request.getSession();//세션정보를 가지고와서 id를 묶어주기
 
 		if(result==1) { 
 			request.setAttribute("result", result); 
 
-			HttpSession session =request.getSession();//세션정보를 가지고와서 id를 묶어주기
 			session.setAttribute("m_id", m_id); 
 			session.setMaxInactiveInterval(60*30); //로그인유지 시간 30분 
 
@@ -42,11 +43,12 @@ public class LoginResultAction implements Action {
 			return f;
 
 		} else {
-
-			request.setAttribute("result", result);
+			
 			f.setForward(false);
-			System.out.println("@@@@@@@@@");
 			f.setPath("login.do");
+			String Msg = "아이디 또는 비밀번호를 확인해주세요.";
+			session.setAttribute("Msg", Msg); 
+			
 			return f;
 		}
 

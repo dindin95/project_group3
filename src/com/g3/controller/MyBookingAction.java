@@ -1,6 +1,7 @@
 package com.g3.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,11 +10,11 @@ import javax.servlet.http.HttpSession;
 
 import com.g3.comm.Action;
 import com.g3.comm.Forward;
-import com.g3.dto.LoginDTO;
-import com.g3.dto.MyPageDTO;
+import com.g3.dto.BookingListDTO;
+import com.g3.dto.QuestionDTO;
 import com.g3.service.MyPageService;
 
-public class MyPageListAction implements Action {
+public class MyBookingAction implements Action {
 
 	@Override
 	public Forward execute(HttpServletRequest request, HttpServletResponse response)
@@ -21,27 +22,20 @@ public class MyPageListAction implements Action {
 		// TODO Auto-generated method stub
 		
 		
-		/*
-		 * Forward forward = new Forward(); forward.setForward(true);
-		 * forward.setPath("/main.jsp?page=login.jsp"); return forward;
-		 */
 		
-		System.out.println("mypagelist");
+		System.out.println("MyBookingAction");
 		
 		HttpSession session =request.getSession();
 		String m_id = (String) session.getAttribute("m_id");
 		
-		MyPageService service = MyPageService.getService();
-		MyPageDTO dto = service.getMyPageList(m_id);
-		request.setAttribute("dto", dto);
-		
-		Forward forward = new Forward();
+		Forward forward=new Forward();
 		forward.setForward(true);
-		forward.setPath("WEB-INF/myPage/myPageList.jsp");
-
+		forward.setPath("WEB-INF/myPage/myBookingList.jsp");
+		
+		
 		return forward;
 		
-		
 	}
+
 
 }

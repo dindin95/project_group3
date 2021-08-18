@@ -9,11 +9,10 @@ import javax.servlet.http.HttpSession;
 
 import com.g3.comm.Action;
 import com.g3.comm.Forward;
-import com.g3.dto.LoginDTO;
 import com.g3.dto.MyPageDTO;
 import com.g3.service.MyPageService;
 
-public class MyPageListAction implements Action {
+public class MyPageModifyFormAction implements Action {
 
 	@Override
 	public Forward execute(HttpServletRequest request, HttpServletResponse response)
@@ -21,27 +20,25 @@ public class MyPageListAction implements Action {
 		// TODO Auto-generated method stub
 		
 		
-		/*
-		 * Forward forward = new Forward(); forward.setForward(true);
-		 * forward.setPath("/main.jsp?page=login.jsp"); return forward;
-		 */
 		
-		System.out.println("mypagelist");
+		System.out.println("MyPageModifyFormAction");
 		
 		HttpSession session =request.getSession();
 		String m_id = (String) session.getAttribute("m_id");
 		
 		MyPageService service = MyPageService.getService();
+		
 		MyPageDTO dto = service.getMyPageList(m_id);
 		request.setAttribute("dto", dto);
 		
 		Forward forward = new Forward();
 		forward.setForward(true);
-		forward.setPath("WEB-INF/myPage/myPageList.jsp");
+		forward.setPath("WEB-INF/myPage/myPageModifyForm.jsp");
 
 		return forward;
 		
 		
 	}
+
 
 }

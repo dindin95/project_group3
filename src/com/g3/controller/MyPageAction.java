@@ -27,7 +27,7 @@ public class MyPageAction implements Action {
 		
 		Forward forward = new Forward();
 		forward.setForward(true);
-		forward.setPath("WEB-INF/main/myPage.jsp");
+		forward.setPath("WEB-INF/myPage/myPage.jsp");
 
 		return forward;
 		

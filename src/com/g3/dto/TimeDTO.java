@@ -1,13 +1,10 @@
 package com.g3.dto;
 
 public class TimeDTO {
-//	t_no, bo_room, startTime, endTime
-	
 	private int t_no;
 	private int bo_room;
 	private String startTime;
 	private String endTime;
-	
 	
 	public int getT_no() {
 		return t_no;
