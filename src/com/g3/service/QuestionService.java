@@ -9,7 +9,9 @@ import javax.naming.NamingException;
 
 
 import com.g3.comm.DBConnection;
+import com.g3.dao.AnswerDAO;
 import com.g3.dao.QuestionDAO;
+import com.g3.dto.AnswerDTO;
 import com.g3.dto.QuestionDTO;
 
 public class QuestionService {
@@ -181,7 +183,7 @@ public class QuestionService {
 	}
 
 	
-	//나의 문의글 조회 갯수 
+	//�굹�쓽 臾몄쓽湲� 議고쉶 媛��닔 
 	public int getMyTotalCount(String search, String searchtxt, String m_id) {
 		DBConnection dbconn = DBConnection.getDBConn();
 		Connection conn=null;
@@ -207,7 +209,7 @@ public class QuestionService {
 		   return totalcount;
 		}
 		
-		//나의 문의글 조회 
+		//�굹�쓽 臾몄쓽湲� 議고쉶 
 		public List<QuestionDTO> getMyList(int startrow, int endrow, String search, String searchtxt, String m_id) {
 			// TODO Auto-generated method stub
 			
@@ -228,6 +230,96 @@ public class QuestionService {
 					}
 					return list;
 		}
+		
+		
+		
+		//관리자 체크
+		public int checkMember(String m_id) {
+			
+			DBConnection dbconn = DBConnection.getDBConn();
+			Connection conn = null;
+			System.out.println("관리자 체크");
+			int checkResult =0;
+			try {
+				conn = dbconn.getConnection();
+				
+			    AnswerDAO answerDAO = new AnswerDAO();
+			    checkResult = answerDAO.checkMember(conn,m_id);
+				
+			}catch (SQLException | NamingException e) {
+				// TODO: handle exception
+			}
+			
+			return checkResult;
+			
+		}
+		
+		
+		//리플보기
+		public List<AnswerDTO> replyView(int qno) {
+			
+			DBConnection dbconn = DBConnection.getDBConn();
+			Connection conn = null;
+			
+			
+			List<AnswerDTO> answerList = new ArrayList<AnswerDTO>();
+			try {
+				conn = dbconn.getConnection();
+				
+				AnswerDAO answerDAO = new AnswerDAO();
+				
+				
+				answerList = answerDAO.getView(conn,qno);
+				
+			}catch(SQLException | NamingException e) {
+				System.out.println(e);
+			}finally {
+				if(conn !=null)try {conn.close();}catch(SQLException e) {}
+			}
+			
+			
+			
+			return answerList;
+		}
+
+		
+		public void answerAdd(AnswerDTO answerDTO) {
+			DBConnection dbconn = DBConnection.getDBConn();
+			Connection conn =null;
+			try {
+				conn=dbconn.getConnection();
+				AnswerDAO answerDAO= new AnswerDAO();
+				answerDAO.answerAdd(conn,answerDTO);
+				
+			}catch(SQLException | NamingException e) {
+				System.out.println(e);
+			}finally {
+				if(conn!=null)try {conn.close();}catch(SQLException e) {}
+				
+			}
+			
+		}
+
+		public void questionRemove(int ano, int qno) {
+			DBConnection dbconn = DBConnection.getDBConn();
+			Connection conn = null;
+			
+			try {
+				conn = dbconn.getConnection();
+				
+				AnswerDAO answerDAO = new AnswerDAO();
+				answerDAO.answerRemove(conn,ano);
+				
+			}catch (SQLException | NamingException e) {
+				System.out.println(e);
+			}finally {
+				if(conn!=null)try {conn.close();}catch(SQLException e) {}
+			}
+			
+		}
+		
+		
+		
 	}
 	
 
