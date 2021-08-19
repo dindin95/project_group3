@@ -22,6 +22,7 @@ public class BookingListDAO {
 		sql.append("       ,bo_date	   ");
 		sql.append("       ,m_id	   ");
 		sql.append(" from booking_g3   ");
+		
 
 		List<BookingListDTO> list = new ArrayList<BookingListDTO>();
 		
