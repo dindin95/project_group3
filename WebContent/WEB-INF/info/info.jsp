@@ -114,7 +114,7 @@
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img class="d-block w-100" src="assets/img/main_img.PNG" alt="Third slide" height="600px" width="800px">
+					<img class="d-block w-100" src="assets/img/main_img.png" alt="Third slide" height="600px" width="800px">
 					<div class="carousel-caption d-none d-md-block">
 						<h2>Room C</h2>
 						<h4>#프라이빗한_분위기&nbsp;&nbsp;&nbsp;&nbsp;#적절한_공부_적절한_휴식</h4>

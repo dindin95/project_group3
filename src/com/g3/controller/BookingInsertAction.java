@@ -22,8 +22,8 @@ public class BookingInsertAction implements Action {
 		String m_id = request.getParameter("m_id");
 		int bo_room = Integer.parseInt(request.getParameter("bo_room"));
 		String bo_date = request.getParameter("bo_date");
-		String startTime = request.getParameter("startTime");
-		String endTime = request.getParameter("endTime");
+		int startTime = Integer.parseInt(request.getParameter("startTime"));
+		int endTime = Integer.parseInt(request.getParameter("endTime"));
 		int bo_persons = Integer.parseInt(request.getParameter("bo_persons"));
 		
 		TimeDTO time = new TimeDTO();

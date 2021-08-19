@@ -21,7 +21,7 @@
 }
 
 .bt{
-    margin-left: 700px;
+    margin : auto;
     padding: 20px 20px;
     border:  1px solid #f96332; 
     width: 550px;

@@ -19,7 +19,7 @@
 	} else {
 %>
 		<script>
-			alert("입력 실패");
+			alert("예약에 실패했습니다. 다시 시도해주세요.");
 			location.href = "booking.do";
 		</script>
 <%	

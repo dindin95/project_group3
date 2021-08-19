@@ -33,8 +33,6 @@ public class BookingService {
 	           
 	           timeResult = dao.selectTime(conn, time);
 	           
-	           //conn.setAutoCommit(false);
-	           
 	           result = dao.insertBooking(conn, booking, timeResult);
 	           conn.commit();
 	           

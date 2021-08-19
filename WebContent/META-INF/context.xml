@@ -2,6 +2,6 @@
 <Context>
 	<Resource name="jdbc/kosta" auth="Container" type="javax.sql.DataSource"
                maxTotal="100" maxIdle="30" maxWaitMillis="10000"
-               username="hr" password="hr" driverClassName="oracle.jdbc.OracleDriver"
-               url="jdbc:oracle:thin:@127.0.0.1:1521:XE"/>
+               username="mydb" password="kostamsa220!" driverClassName="com.mysql.jdbc.Driver"
+               url="jdbc:mysql://my5701.gabiadb.com:3306/kostadb"/>
 </Context>

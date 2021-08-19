@@ -12,6 +12,19 @@
 
 <jsp:include page="../includes/header.jsp" />
 
+<%
+	// 세션값 가져오기
+	String m_id = (String) session.getAttribute("m_id"); // Object 타입이므로 다운캐스팅
+	if(m_id == null) {
+%>
+	<script>
+		alert("로그인 후 진행해주세요.");
+		location.href = "login.do";
+	</script>
+<%		
+	}
+%>
+
 <c:set var="list" value="${requestScope.list}"></c:set>
 
 <c:set var="currpage" value="${requestScope.currpage}"></c:set>
@@ -44,14 +57,12 @@
 	<table class="table table-hover">
 	  <thead><tr><th>번호</th>
 	  		<th>제목</th>
-	  		<th>내용</th>
 	  		<th>회원아이디</th>
 	  		<th>작성일</th></tr></thead>
 	  <tbody>
 	    <c:forEach var="item" items="${list }">
 	      <tr><td><c:out value="${item.q_no}"></c:out></td>
 	      <td><a href="questiondetail.do?q_no=${item.q_no }"><c:out value="${item.q_title }"/></a></td>
-	      <td><c:out value="${item.q_content }"/></td>
 	      <td><c:out value="${item.m_id }"/></td>
 	      <td><c:out value="${item.q_writedate }"/></td></tr>
 	    </c:forEach>

@@ -85,7 +85,7 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" style="font-size: 15px" href="info.do">소개</a>
-					<a class="dropdown-item" style="font-size: 15px" href="#">룸 예약 현황</a> 
+					<a class="dropdown-item" style="font-size: 15px" href="bookingList.do">룸 예약 현황</a> 
 					<a class="dropdown-item" style="font-size: 15px" href="booking.do">룸 예약</a> 
 					<a class="dropdown-item" style="font-size: 15px" href="question.do">QnA</a>
 				</div>
@@ -117,7 +117,7 @@
 	<!-- End Navbar -->
 	<div class="wrapper">
 		<div class="page-header page-header-small">
-			<div class="page-header-image" data-parallax="true" style="background-image: url('assets/img/main_img.PNG');"></div>
+			<div class="page-header-image" data-parallax="true" style="background-image: url('assets/img/main_img.png');"></div>
 			<div class="content-center"></div>
 		</div>
 	</div>

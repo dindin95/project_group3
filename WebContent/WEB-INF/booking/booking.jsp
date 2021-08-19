@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -79,8 +80,17 @@
 	<!-- header -->
 	<jsp:include page="../includes/header.jsp" />
 <%
+	
 	// 세션값 가져오기
 	String m_id = (String) session.getAttribute("m_id"); // Object 타입이므로 다운캐스팅
+	if(m_id == null) {
+%>
+	<script>
+		alert("로그인 후 진행해주세요.");
+		location.href = "login.do";
+	</script>
+<%		
+	}
 %>
 	
 	<!-- section -->
@@ -111,42 +121,25 @@
 			    <hr>
 			    
 			    <div class="choice">
-			    	<label><b>시간 선택</b></label>
-			    	<br>
-			    	<select name="startTime" id="startTime" class="time">
-			    		<option value=""> 시작시간 </option>
-	                    <option value="9">09:00</option>
-	                    <option value="10">10:00</option>
-	                    <option value="11">11:00</option>
-	                    <option value="12">12:00</option>
-	                    <option value="13">13:00</option>
-	                    <option value="14">14:00</option>
-	                    <option value="15">15:00</option>
-	                    <option value="16">16:00</option>
-	                    <option value="17">17:00</option>
-	                    <option value="18">18:00</option>
-	                    <option value="19">19:00</option>
-	                    <option value="20">20:00</option>
-	                    <option value="21">21:00</option>
-	                    <option value="22">22:00</option>
-                	</select>
-                	<select name="endTime" id="endTime" class="time">
-			    		<option value=""> 종료시간 </option>
-	                    <option value="9">09:00</option>
-	                    <option value="10">10:00</option>
-	                    <option value="11">11:00</option>
-	                    <option value="12">12:00</option>
-	                    <option value="13">13:00</option>
-	                    <option value="14">14:00</option>
-	                    <option value="15">15:00</option>
-	                    <option value="16">16:00</option>
-	                    <option value="17">17:00</option>
-	                    <option value="18">18:00</option>
-	                    <option value="19">19:00</option>
-	                    <option value="20">20:00</option>
-	                    <option value="21">21:00</option>
-	                    <option value="22">22:00</option>
-                	</select>
+					<a href="bookingTime.do" style="color: white; background-color: #f96332; padding: 10px">시간 선택</a>
+					<table class="table" style="width: 500px; margin-top: 20px">
+						<thead>
+							<tr>
+								<th>시작 시간</th>
+								<th>종료 시간</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td></td>
+								<td></td>
+								<td><input type="checkbox" style="width: 20px; height: 20px"></td>
+							</tr>
+						</tbody>
+					</table>
+					<br>
+			    	<hr>
 			    </div>
 		
 				<div class="choice">

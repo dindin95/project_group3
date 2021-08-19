@@ -39,7 +39,7 @@ public class QuestionAction implements Action {
 	    //전체 자료갯수
 		 QuestionService service=QuestionService.getInstance();
 		 int totalcount= service.getTotalCount(search, searchtxt);
-		 int pagepercount= 3;  //1페이지에 보여줄 자료수
+		 int pagepercount= 10;  //1페이지에 보여줄 자료수
 		 
 		 int totalpage=(int) Math.ceil((float)totalcount/pagepercount);
 				 
