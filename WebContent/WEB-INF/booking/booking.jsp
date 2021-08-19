@@ -7,6 +7,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('#timeChoice').click(function() {
+			$.ajax({
+				url: "http://localhost:8080/project_group3/bookingTime.do" //BookingTimeAction.java 파일
+			   ,datatype: "json"
+			   ,success: function(data) {
+					console.log("성공: " + date);
+					$('#result').html(data);
+				}
+			   ,error: function(jqxhr) {
+				   console.log("실패");
+				   console.log(jqxhr);
+			   }
+			});
+		});
+	});
+</script>
 <style>
 	input[type=text] {
 	  width: 100%;
@@ -39,6 +58,8 @@
 	  width: 100%;
 	  background-color: #f96332; <!-- 오렌지 색상 -->
 	}
+	
+	#ㅅ
 	
 	/* Style the horizontal ruler */
 	hr {
@@ -121,23 +142,9 @@
 			    <hr>
 			    
 			    <div class="choice">
-					<a href="bookingTime.do" style="color: white; background-color: #f96332; padding: 10px">시간 선택</a>
-					<table class="table" style="width: 500px; margin-top: 20px">
-						<thead>
-							<tr> 
-								<th>시작 시간</th>
-								<th>종료 시간</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td></td>
-								<td></td>
-								<td><input type="checkbox" style="width: 20px; height: 20px"></td>
-							</tr>
-						</tbody>
-					</table>
+					<!-- <a href="bookingTime.do" style="color: white; background-color: #f96332; padding: 10px">시간 선택</a> -->
+					<button id="timeChoice" style="background-color: #f96332">시간 선택</button>
+					<div id="result"></div>
 					<br>
 			    	<hr>
 			    </div>
