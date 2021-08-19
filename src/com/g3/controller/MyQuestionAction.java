@@ -47,7 +47,7 @@ public class MyQuestionAction implements Action {
 		   
 	    //전체 자료갯수
 		 QuestionService service=QuestionService.getInstance();
-		 int totalcount= service.getTotalCount(search, searchtxt , m_id);
+		 int totalcount= service.getMyTotalCount(search, searchtxt , m_id);
 		 int pagepercount= 10;  //1페이지에 보여줄 자료수
 		 
 		 int totalpage=(int) Math.ceil((float)totalcount/pagepercount);
@@ -69,7 +69,7 @@ public class MyQuestionAction implements Action {
 		 }
 		 
 		
-		List<QuestionDTO> list = service.getList(startrow,endrow,search,searchtxt ,  m_id);
+		List<QuestionDTO> list = service.getMyList(startrow,endrow,search,searchtxt ,  m_id);
 		request.setAttribute("list", list);
 		request.setAttribute("currpage", currpage);
 		request.setAttribute("datacount", list.size());

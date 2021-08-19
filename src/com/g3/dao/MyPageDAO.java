@@ -162,8 +162,8 @@ public class MyPageDAO {
 
 			  
 			  pstmt.setString(1, m_id);
-			    pstmt.setInt(2, 1);
-			    pstmt.setInt(3, 5);
+			    pstmt.setInt(2, startrow);
+			    pstmt.setInt(3, endrow);
 
 			    rs=pstmt.executeQuery();
 			    
