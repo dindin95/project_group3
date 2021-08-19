@@ -124,7 +124,7 @@
 					<a href="bookingTime.do" style="color: white; background-color: #f96332; padding: 10px">시간 선택</a>
 					<table class="table" style="width: 500px; margin-top: 20px">
 						<thead>
-							<tr>
+							<tr> 
 								<th>시작 시간</th>
 								<th>종료 시간</th>
 								<th></th>
