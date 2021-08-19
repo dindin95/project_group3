@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.g3.dto.MyPageDTO;
-import com.g3.dto.QuestionDTO;
+import com.g3.dto.MybookingDTO;
 
 public class MyPageDAO {
 	
@@ -126,48 +126,58 @@ public class MyPageDAO {
 	}
 	
 	//나의 예약현황
-	public List<QuestionDTO> getList(Connection conn, int startrow, int endrow, String m_id) {
-
-		/*
-		 * StringBuilder sql=new StringBuilder();
-		 * sql.append("   select   *                              ");
-		 * sql.append("   from (                                  ");
-		 * sql.append("          select rownum as rnum, b.*       ");
-		 * sql.append("          from (                           ");
-		 * sql.append("                   select                  ");
-		 * sql.append("                            q_no   		 ");
-		 * sql.append("                            ,q_title   	 ");
-		 * sql.append("                            ,q_content     ");
-		 * sql.append("                            ,m_id        	 ");
-		 * sql.append("                            ,q_writedate   ");
-		 * sql.append("                   from question_g3        ");
-		 * sql.append("                   where   m_id=?		     ");
-		 * sql.append("                   order by q_no desc  	 ");
-		 * sql.append("                )b                         ");
-		 * sql.append("        )                                  ");
-		 * sql.append("  where rnum>=?  and rnum<=?               ");
-		 * 
+	public List<MybookingDTO> getList(Connection conn, int startrow, int endrow, String m_id) {
+		
+		 StringBuilder sql=new StringBuilder();
+		 sql.append("   select   *                                                                                   ");
+		 sql.append("   from (                                                                                       ");
+		 sql.append("          select rownum as rnum, b.*                                                            ");
+		 sql.append("          from (                                                                                ");
+		 sql.append("                   select                                                                       ");
+		 sql.append("                            bo_no   		                                                     ");
+		 sql.append("                            ,m_id   	                                                    	 ");
+		 sql.append("                            ,bo_date   	                                                     ");
+		 sql.append("                            ,bo_room     														 ");
+		 sql.append("                            ,REGEXP_REPLACE((startTime - endTime), '[^0-9]+') as time        	 ");
+		 sql.append("                   from booking_g3 a       													 ");
+		 sql.append("                   join time_g3 b       														 ");
+		 sql.append("                   on a.t_no = b.t_no      													 ");
+		 sql.append("                   where   m_id=?		    													 ");
+		 sql.append("                   order by bo_no desc  	 													 ");
+		 sql.append("                )b                         													 ");
+		 sql.append("        )                                  													 ");
+		 sql.append("  where rnum>=?  and rnum<=?               													 ");
+		 
 		 
 		  ResultSet rs=null;
-		  
-		  List<QuestionDTO> list=new ArrayList<QuestionDTO>();
+		  List<MybookingDTO> list= new ArrayList<MybookingDTO>();
 		  
 		  try(
 			  PreparedStatement pstmt=conn.prepareStatement(sql.toString());
 			) {
 			  
-			    pstmt.setInt(1, startrow);
-			    pstmt.setInt(2, endrow);
-			 
-			 
-			  rs=pstmt.executeQuery();
-			  while(rs.next())
-			  {
-				QuestionDTO dto=new QuestionDTO();
-				
+			  System.out.println("%%%%%%%%%%%%%%%%%%    " + m_id);
+			  System.out.println("%%%%%%%%%%%%%%%%startrow%%    " + startrow);
+			  System.out.println("%%%%%%%%%%%%%%%%%endrow%    " + endrow);
+
+			  
+			  pstmt.setString(1, m_id);
+			    pstmt.setInt(2, 1);
+			    pstmt.setInt(3, 5);
+
+			    rs=pstmt.executeQuery();
+			    
+			   while(rs.next()) {
+			      MybookingDTO dto=new MybookingDTO();
+				  
+				  dto.setBo_no(rs.getInt("bo_no"));
+				  dto.setBo_date(rs.getDate("bo_date"));
+				  dto.setBo_room(rs.getInt("bo_room"));
+				  dto.setTime(rs.getInt("time"));
+				  dto.setM_id(rs.getString("m_id"));
+				  
 				list.add(dto);
 			  }
-			  
 			  
 		  }catch(SQLException e)
 		  {
@@ -176,9 +186,35 @@ public class MyPageDAO {
 			  if(rs!=null) try { rs.close();} catch(SQLException e) {}
 		  }
 		
-		*/
+		return list;
+	}
+	
+	//나의 예약현황 삭제
+	public static void myPageDelete(Connection conn, int bo_no) {
+
+		StringBuilder sql = new StringBuilder();
+		sql.append("       delete from booking_g3 a      			");
+		sql.append("       where exists     					    ");
+		sql.append("       (select 	      							");
+		sql.append("        	m_id	      						");
+		sql.append("       			from time_g3 b 	      			");
+		sql.append("      				where a.t_no = b.t_no	 	");
+		sql.append("      				and bo_no = ? ) 			");
 		
-		return null;
+		System.out.println(bo_no  + "dao ");
+		try(
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+				){
+			
+			pstmt.setInt(1, bo_no );
+			pstmt.executeUpdate();	
+			
+			
+		} catch(SQLException e)
+		{
+			System.out.println(e);
+		}
+		
 	}
 	
 	

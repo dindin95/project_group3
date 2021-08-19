@@ -1,5 +1,7 @@
 package com.g3.dto;
 
+import java.sql.Connection;
+
 public class MemberDTO {
 	
 	private String m_id;

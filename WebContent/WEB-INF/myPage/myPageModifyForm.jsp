@@ -18,10 +18,11 @@
 <style>
 .phsize{
 	height: 250px
+	
 }
 
 .bt{
-    margin-left: 700px;
+    margin : auto;
     padding: 20px 20px;
     border:  1px solid #f96332; 
     width: 550px;
@@ -46,6 +47,18 @@
 }
 
 </style>
+
+<script type="text/javascript">
+
+function save(){
+
+    if(confirm("저장하시겠습니까?")){
+    	return true;
+    } 
+
+}
+
+</script>
 
 <body class="profile-page sidebar-collapse">
 
@@ -103,7 +116,7 @@ String m_id = (String) session.getAttribute("m_id"); // Object 타입이므로 �
 				
 				<br>
 				
-				<input type="submit" class="btn btn-primary btn-round btn-lg" style="width: 100%" value="저장">
+				<input type="submit" class="btn btn-primary btn-round btn-lg" onclick="save()" style="width: 100%" value="저장">
 	        </div>
 	        </form>
         </div>
