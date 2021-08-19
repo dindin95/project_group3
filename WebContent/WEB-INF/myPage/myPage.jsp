@@ -32,6 +32,25 @@
 }
 </style>
 
+<script type="text/javascript">
+
+function memberDelete(){
+
+    if(confirm("정말 탈퇴하시겠습니까?")){
+
+        location.href = "memberDelete.do";
+        return true;
+
+    } else {
+
+        return false;
+
+    }
+
+}
+
+</script>
+
 <body class="profile-page sidebar-collapse">
 
 <%
@@ -60,10 +79,10 @@ String m_id = (String) session.getAttribute("m_id"); // Object 타입이므로 �
 		          <a href="myPageList.do" class="btn btn-primary btn-round btn-lg" style="width: 100%">   내정보 보기 </a>	<br>
 		          <a href="myPageModifyForm.do" class="btn btn-primary btn-round btn-lg" style="width: 100%">  내정보 수정  </a>	<br>
 		          <a href="myBookingList.do" class="btn btn-primary btn-round btn-lg" style="width: 100%">   예약  현황   </a>		<br>
-		          <a href="#button" class="btn btn-primary btn-round btn-lg" style="width: 100%">문의글 작성 내역</a>		<br>
+		          <a href="myQuestion.do" class="btn btn-primary btn-round btn-lg" style="width: 100%">문의글 작성 내역</a>		<br>
 		        </div>
 		          <a href="logout.do" class="btn btn-primary btn-round btn-lg" style="width: 250px">    로그아웃    </a>		
-		          <a href="#button" class="btn btn-primary btn-round btn-lg" style="width: 250px">    회원탈퇴    </a>
+		          <a href="#" onclick="memberDelete();"class="btn btn-primary btn-round btn-lg" style="width: 250px">    회원탈퇴    </a>
 	        </div>
         </div>
     </div>

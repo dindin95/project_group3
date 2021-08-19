@@ -112,5 +112,53 @@ public class QuestionService {
 		}
 	}
 	
+	//나의 문의글 조회 갯수 
+	public int getTotalCount(String search, String searchtxt, String m_id) {
+		DBConnection dbconn = DBConnection.getDBConn();
+		Connection conn=null;
+	       int totalcount=0;
+	       
+		   try {
+	           conn=dbconn.getConnection();
+		       conn.setAutoCommit(false);
+		       QuestionDAO dao=QuestionDAO.getDAO();
+	           
+	          totalcount= dao.getTotalCount(conn,search, searchtxt, m_id);
+	          System.out.println("totalcount!!! : "+totalcount);
+		       
+		       conn.commit();
+		   } catch(SQLException|NamingException e)
+		   {
+			  try { conn.rollback();} catch(SQLException e2) {}
+			   
+		   }finally {
+			   if(conn!=null) try { conn.close();} catch(SQLException e) {}
+			   
+		   }
+		   return totalcount;
+		}
 	
-}
+	//나의 문의글 조회 
+		public List<QuestionDTO> getList(int startrow, int endrow, String search, String searchtxt, String m_id) {
+			// TODO Auto-generated method stub
+			
+					DBConnection dbconn = DBConnection.getDBConn();
+					Connection conn=null;
+					List<QuestionDTO> list = new ArrayList<QuestionDTO>();
+					
+					try {
+						conn=dbconn.getConnection();
+						QuestionDAO dao = new QuestionDAO();
+						
+						list=dao.getList(conn,startrow,endrow,search,searchtxt, m_id);
+					}catch(SQLException|NamingException e)
+					{
+						System.out.println(e);
+					}finally {
+						if(conn!=null) try { conn.close();} catch(SQLException e) {}
+					}
+					return list;
+		}
+	}
+	
+	

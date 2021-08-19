@@ -6,22 +6,31 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.g3.comm.Action;
 import com.g3.comm.Forward;
+import com.g3.dto.LoginDTO;
+import com.g3.dto.MyPageDTO;
 import com.g3.dto.QuestionDTO;
+import com.g3.service.MyPageService;
 import com.g3.service.QuestionService;
 
-
-public class QuestionAction implements Action {
+public class MyQuestionAction implements Action {
 
 	@Override
 	public Forward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		 request.setCharacterEncoding("utf-8");	
-			
+		
+		System.out.println("MyQuestionAction");
+		
+		HttpSession session =request.getSession();
+		String m_id = (String) session.getAttribute("m_id");
+		
+		request.setCharacterEncoding("utf-8");	
+		
 		  String curr=request.getParameter("curr");
 		  
 		   int currpage=1;
@@ -38,7 +47,7 @@ public class QuestionAction implements Action {
 		   
 	    //전체 자료갯수
 		 QuestionService service=QuestionService.getInstance();
-		 int totalcount= service.getTotalCount(search, searchtxt);
+		 int totalcount= service.getTotalCount(search, searchtxt , m_id);
 		 int pagepercount= 10;  //1페이지에 보여줄 자료수
 		 
 		 int totalpage=(int) Math.ceil((float)totalcount/pagepercount);
@@ -60,7 +69,7 @@ public class QuestionAction implements Action {
 		 }
 		 
 		
-		List<QuestionDTO> list = service.getList(startrow,endrow,search,searchtxt);
+		List<QuestionDTO> list = service.getList(startrow,endrow,search,searchtxt ,  m_id);
 		request.setAttribute("list", list);
 		request.setAttribute("currpage", currpage);
 		request.setAttribute("datacount", list.size());
@@ -77,7 +86,9 @@ public class QuestionAction implements Action {
 		
 		
 		return forward;
+
+		
+		
 	}
-	
 
 }

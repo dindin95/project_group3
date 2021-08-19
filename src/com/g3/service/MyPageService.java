@@ -10,10 +10,13 @@ import javax.naming.NamingException;
 import com.g3.comm.DBConnection;
 import com.g3.dao.BookingListDAO;
 import com.g3.dao.LoginDAO;
+import com.g3.dao.MemberDAO;
 import com.g3.dao.MyPageDAO;
 import com.g3.dao.QuestionDAO;
 import com.g3.dto.LoginDTO;
+import com.g3.dto.MemberDTO;
 import com.g3.dto.MyPageDTO;
+import com.g3.dto.MybookingDTO;
 import com.g3.dto.QuestionDTO;
 
 public class MyPageService {
@@ -102,12 +105,12 @@ public class MyPageService {
 	}
 	
 	//나의 예약현황
-	public List<QuestionDTO> getList(int startrow, int endrow, String m_id) {
+	public List<MybookingDTO> getList(int startrow, int endrow, String m_id) {
 
 		DBConnection dbconn = DBConnection.getDBConn();
 		Connection conn=null;
 		
-		List<QuestionDTO> list = new ArrayList<QuestionDTO>();
+		List<MybookingDTO> list = new ArrayList<MybookingDTO>();
 		
 		try {
 			conn=dbconn.getConnection();
@@ -122,7 +125,57 @@ public class MyPageService {
 		}finally {
 			if(conn!=null) try { conn.close();} catch(SQLException e) {}
 		}
+		
+		System.out.println("service = " + list.size());
 		return list;
+	}
+	
+	//나의 예약현황 삭제 
+	public void myBookingDelete(int bo_no) {
+
+		DBConnection dbconn = DBConnection.getDBConn();
+		Connection conn = null;
+		
+		try {
+			conn = dbconn.getConnection();
+			conn.setAutoCommit(false);
+				
+			MyPageDAO.myPageDelete(conn, bo_no);
+			
+			System.out.println("service " + bo_no);
+			conn.commit();
+		}catch (SQLException | NamingException e) {
+			System.out.println(e);
+			
+			try {conn.rollback();} catch(SQLException e2) {}
+		}finally {
+			if(conn!=null)try {conn.close();}catch(SQLException e) {}
+		}
+		
+	}
+	
+	
+	//회원탈퇴 
+	public void memberDelete(String m_id) {
+		DBConnection dbconn = DBConnection.getDBConn();
+		Connection conn = null;
+		
+		try {
+			conn = dbconn.getConnection();
+			conn.setAutoCommit(false);
+			
+			MemberDAO.memberDelete(conn, m_id);
+			
+			conn.commit();
+		}catch (SQLException | NamingException e) {
+			System.out.println(e);
+			
+			try {conn.rollback();} catch(SQLException e2) {}
+		}finally {
+			if(conn!=null)try {conn.close();}catch(SQLException e) {}
+		}
+		
+		
 	}
 
 	

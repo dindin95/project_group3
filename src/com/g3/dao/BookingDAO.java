@@ -47,7 +47,7 @@ public class BookingDAO {
 		try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 			ResultSet rs = pstmt.executeQuery();
 		){
-			if(rs.next()) {
+			while(rs.next()) {
 				timeResult = rs.getInt(1);
 			}
 			

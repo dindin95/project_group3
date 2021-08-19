@@ -11,22 +11,65 @@ import javax.servlet.http.HttpSession;
 import com.g3.comm.Action;
 import com.g3.comm.Forward;
 import com.g3.dto.BookingListDTO;
+import com.g3.dto.MybookingDTO;
 import com.g3.dto.QuestionDTO;
 import com.g3.service.MyPageService;
+import com.g3.service.QuestionService;
 
 public class MyBookingAction implements Action {
 
 	@Override
 	public Forward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		
 		
 		System.out.println("MyBookingAction");
 		
 		HttpSession session =request.getSession();
 		String m_id = (String) session.getAttribute("m_id");
+		
+		String curr=request.getParameter("curr");
+		  
+		   int currpage=1;
+		   if(curr!=null) {
+			   currpage=Integer.parseInt(curr);
+		   }
+			
+		   
+	    //전체 자료갯수
+		 MyPageService service=MyPageService.getService();
+		 int totalcount= service.getTotalCount(m_id);
+		 int pagepercount= 10;  //1페이지에 보여줄 자료수
+
+		 System.out.println(totalcount + "    sss ");
+		 
+		 int totalpage=(int) Math.ceil((float)totalcount/pagepercount);
+				 
+		 int startrow=(currpage-1)*pagepercount+1;
+		 int endrow=startrow+pagepercount-1;
+		 
+		 if(endrow>totalcount)
+			 endrow=totalcount;
+		 
+		 int blockcount=3;
+		 int startblock=(currpage-1)/blockcount*blockcount+1;
+		 int endblock=startblock+blockcount-1;
+		 
+		 if(endblock>totalpage){
+			 endblock=totalpage;
+		 }
+		
+		
+		
+		List<MybookingDTO> list = service.getList(startrow,endrow, m_id);
+		
+		System.out.println("ac    " +list.size() );
+		
+		request.setAttribute("list", list);
+		request.setAttribute("currpage", currpage);
+		request.setAttribute("datacount", list.size());
+		request.setAttribute("startblock", startblock);
+		request.setAttribute("endblock", endblock);
+		request.setAttribute("totalpage", totalpage);
 		
 		Forward forward=new Forward();
 		forward.setForward(true);

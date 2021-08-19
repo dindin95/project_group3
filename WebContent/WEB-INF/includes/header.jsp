@@ -85,7 +85,7 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" style="font-size: 15px" href="info.do">소개</a>
-					<a class="dropdown-item" style="font-size: 15px" href="#">룸 예약 현황</a> 
+					<a class="dropdown-item" style="font-size: 15px" href="bookingList.do">룸 예약 현황</a> 
 					<a class="dropdown-item" style="font-size: 15px" href="booking.do">룸 예약</a> 
 					<a class="dropdown-item" style="font-size: 15px" href="question.do">QnA</a>
 				</div>
@@ -103,7 +103,7 @@
 					<div id="wrap">
 						<c:if test="${sessionScope.m_id==null }">
 							<li class="nav-item"><a class="nav-link" style="font-size: 20px" href="login.do">LOGIN</a></li>
-							<li class="nav-item"><a class="nav-link" style="font-size: 20px" href="#">SIGN UP</a></li>
+							<li class="nav-item"><a class="nav-link" style="font-size: 20px" href="#" >SIGN UP</a></li>
 						</c:if>
 						<c:if test="${sessionScope.m_id != null }">
 							<li class="nav-item"><a class="nav-linkid" style="font-size: 20px" href="myPage.do"><%=m_id%>님</a></li>
