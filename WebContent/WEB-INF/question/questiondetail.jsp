@@ -48,6 +48,36 @@
      </div>
   </div>
   
+  <!-- =========댓글 테이블====================== -->
+       		<!-- ======댓글 테이블 ================= -->
+			<table class="table" style="height: 100px">
+			<thead>
+				<tr class="text-">댓글</tr>
+				</thead>
+				<tbody >
+					<tr class="table table-bordered" id="replyList">
+					
+
+					</tr>
+					
+				</tbody>
+
+					
+					
+			</table>
+			
+			<form method="post" action="answerAdd.do">
+			<input type="hidden" name="qno" value="${dto.q_no }">
+			<textarea class="form-control"  placeholder="댓글 입력하세요" name="answer" id="answerBox" maxlength="2048" rows="500" cols="500" style="max-height: 50px"> </textarea>
+			<button class="btn btn-primary btn-round" type="submit">댓글등록</button>
+		
+		</form>
+		</div>
+  </div>
+    
+  
+  
+  
 <!-- 버튼 생성 -->
 			<div class="row text-center" style="width: 100%">
 				<div style="width: 100%; float:none; margin:0 auto" >
@@ -64,6 +94,58 @@
 				</script>
 			<%} %>
 			
+			
+<script>
+$(document).ready(function(){
+
+	
+	let q_qno =${dto.q_no};
+
+	
+	$.ajax({
+		
+	url:'answerView.data'
+   ,method:'post'
+   ,data:{'q_no':q_qno}
+   ,dataType:'json'
+   ,success : function(data){
+	   console.log('성공');
+	   
+	   $.each(data,function(index,item){
+
+   let result =" ";
+   result +="<td>"+ item.a_content+"<br>";
+   result +="<br><br><style='text-align: right, font-size: small'>"+ item.a_writeDate + "<br>작성자" + item.m_id;
+   result+="<button class='btn btn-primary btn-sm' onclick=answerRemove("+item.a_no+ ","+item.q_no+")>삭제</button>";
+   result+="</td>";
+   
+   
+   $('#replyList').append(result);
+   
+	   
+	   });
+	
+  
+   },error:function(xhr){
+	   console.log('실패');
+	   console.log(xhr);
+   }
+	
+	});
+	
+	
+	
+});
+
+
+function answerRemove(a_no,q_no){
+	 console.log(a_no);
+	   console.log(q_no);
+	  
+	   location.href="answerRemove.do?a_no="+a_no+"&q_no="+q_no;
+}
+
+</script>			
 <jsp:include page="../includes/footer.jsp" />
 
 </body>
