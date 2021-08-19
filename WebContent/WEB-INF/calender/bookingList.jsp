@@ -39,51 +39,6 @@
 
    <jsp:include page="../includes/header.jsp" />
 
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h4>Edit Appointment</h4>
-
-                Start time:
-                <br />
-                <input type="text" class="form-control" name="start_time" id="start_time">
-
-                End time:
-                <br />
-                <input type="text" class="form-control" name="finish_time" id="finish_time">
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <input type="button" class="btn btn-primary" id="appointment_update" value="Save">
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="modal" tabindex="-1" role="dialog" id="showModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" id="modalBody">
-       <input type="text" name="modalBody" id="modalBody" value=""/>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <script>
 
@@ -185,21 +140,7 @@
          eventClick: function(arg,calEvent, jsEvent, view) {
            // opens events in a popup window
              //  window.open(arg.event.url, 'google-calendar-event', 'width=700,height=600');
-           // window.open( showModal.modal('show'));
-           
-            $.ajax({
-                    url:"http://localhost:8080/project_group3/bookingList.data"
-                    ,dateType:"json"
-                    ,type:'GET'
-                    ,success : function (data) {   
-                       console.log(data);
-                     $(".modal-body #modalBody").val(data.toString());
-                     showModal.modal('show');    
-                   
-              },error : function(xhr){
-                 console.log('error',xhr);
-              }
-                 });
+         
            
            
         
@@ -217,6 +158,8 @@
      });
 
 
+  
+  
    
 </script>
 
