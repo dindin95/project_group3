@@ -70,9 +70,9 @@
            center: 'title',
            right: 'dayGridMonth,listYear'
          },
-         navLinks: true, // 날짜를 선택하면 Day 캘린더나 Week 캘린더로 링크
-         editable: true, // 수정 가능?
-         selectable: true, // 달력 일자 드래그 설정가능
+         navLinks: false, // 날짜를 선택하면 Day 캘린더나 Week 캘린더로 링크
+         editable: false, // 수정 가능?
+         selectable: false, // 달력 일자 드래그 설정가능
          nowIndicator: true, // 현재 시간 마크
          dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
          locale: 'ko', // 한국어 설정
