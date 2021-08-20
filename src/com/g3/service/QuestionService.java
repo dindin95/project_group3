@@ -326,6 +326,7 @@ public class QuestionService {
 			}
 			
 		}
+
 		//내 문의글 디테일 
 		public QuestionDTO detail(int questionnum, String m_id) {
 			DBConnection dbconn=DBConnection.getDBConn();
@@ -346,9 +347,5 @@ public class QuestionService {
 			}
 
 		
-		}
-	
-
-	
-	
+		}	
 	
