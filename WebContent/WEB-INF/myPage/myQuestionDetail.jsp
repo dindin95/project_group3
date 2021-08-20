@@ -2,6 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +17,7 @@
 <jsp:include page="../includes/header.jsp" />
 
 <c:set var="dto" value="${requestScope.dto }"></c:set>
+<c:set var="list" value="${requestScope.list }"></c:set>
    
    <%
    	QuestionDTO dto = (QuestionDTO)request.getAttribute("dto");
@@ -48,11 +52,15 @@
      </div>
   </div>
   
-  <!-- =========댓글 테이블====================== -->
-       		<!-- ======댓글 테이블 ================= -->
+
+ 		<!-- ======댓글 테이블 ================= -->
+ 		
+ 		 <div class="container my-1">
+ 		 <div class="row">
 			<table class="table" style="height: 100px">
-			<thead>
-				<tr class="text-">댓글</tr>
+		<thead>
+				<tr class="table-active">댓글</tr>
+			
 				</thead>
 				<tbody >
 					<tr class="table table-bordered" id="replyList">
@@ -69,11 +77,14 @@
 			<form method="post" action="answerAdd.do">
 			<input type="hidden" name="qno" value="${dto.q_no }">
 			<textarea class="form-control"  placeholder="댓글 입력하세요" name="answer" id="answerBox" maxlength="2048" rows="500" cols="500" style="max-height: 50px"> </textarea>
+	
 			<button class="btn btn-primary btn-round" type="submit">댓글등록</button>
 		
 		</form>
 		</div>
   </div>
+   </div>
+    </div>
     
   
   
@@ -104,54 +115,57 @@ $(document).ready(function(){
 	
 	$.ajax({
 		
-	url:'answerView.data'
-   ,method:'post'
-   ,data:{'q_no':q_qno}
-   ,dataType:'json'
-   ,success : function(data){
-	   console.log('성공');
+		url:'answerView.data'
+	   ,method:'post'
+	   ,data:{'q_no':q_qno}
+	   ,dataType:'json'
+	   ,success : function(data){
+		   console.log('성공');
+		   
+		   $.each(data,function(index,item){
+
+			
+	   let result =" ";
+	   result += "<br><h3>"+item.a_content+"</h3>";
+	   result +="<style='text-align: right, font-size: small'>"+ item.a_writeDate + "<br>작성자" + item.m_id;
+	   result+="<button class='btn btn-primary btn-sm' onclick=answerRemove("+item.a_no+ ","+item.q_no+")>삭제</button>";
+
+	 
 	   
-	   $.each(data,function(index,item){
-
-   let result =" ";
-   result +="<td>"+ item.a_content+"<br>";
-   result +="<br><br><style='text-align: right, font-size: small'>"+ item.a_writeDate + "<br>작성자" + item.m_id;
-   result+="<button class='btn btn-primary btn-sm' onclick=answerRemove("+item.a_no+ ","+item.q_no+")>삭제</button>";
-   result+="</td>";
-   
-   
-   $('#replyList').append(result);
-   
 	   
-	   });
-	
-  
-   },error:function(xhr){
-	   console.log('실패');
-	   console.log(xhr);
-   }
-	
-	});
-	
-	
-	
-});
-
-
-function answerRemove(a_no,q_no){
-	 console.log(a_no);
-	   console.log(q_no);
+	   $('#replyList').append(result);
+	   
+		   
+		   });
+		
 	  
-	   location.href="answerRemove.do?a_no="+a_no+"&q_no="+q_no;
-}
+	   },error:function(xhr){
+		   console.log('실패');
+		   console.log(xhr);
+	   }
+		
+		});
+		
+		
+		
+	});
 
-</script>			
-<jsp:include page="../includes/footer.jsp" />
 
-</body>
+	function answerRemove(a_no,q_no){
+		 console.log(a_no);
+		   console.log(q_no);
+		  
+		   location.href="answerRemove.do?a_no="+a_no+"&q_no="+q_no;
+	}
 
 
-</html>
 
+	</script>			
+	<jsp:include page="../includes/footer.jsp" />
+
+	</body>
+
+
+	</html>
 
 

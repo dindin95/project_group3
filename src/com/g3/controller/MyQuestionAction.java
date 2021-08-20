@@ -68,7 +68,9 @@ public class MyQuestionAction implements Action {
 			 endblock=totalpage;
 		 }
 		
+		
 		List<QuestionDTO> list = service.getMyList(startrow,endrow,search,searchtxt ,  m_id);
+		
 		request.setAttribute("list", list);
 		request.setAttribute("currpage", currpage);
 		request.setAttribute("datacount", list.size());

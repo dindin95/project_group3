@@ -1,6 +1,7 @@
 package com.g3.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.g3.comm.Action;
 import com.g3.comm.Forward;
+import com.g3.dto.AnswerDTO;
 import com.g3.dto.QuestionDTO;
 import com.g3.service.QuestionService;
 
@@ -20,6 +22,7 @@ public class MyQuestionDetailAction implements Action{
 		// TODO Auto-generated method stub
 		
 		String n=request.getParameter("q_no");
+		int q_no = Integer.parseInt(request.getParameter("q_no"));
 		
 		HttpSession session =request.getSession();
 		String m_id = (String) session.getAttribute("m_id");
@@ -31,8 +34,12 @@ public class MyQuestionDetailAction implements Action{
 		}
 		
 		QuestionService service = QuestionService.getInstance();
+
+		 List<AnswerDTO> list= service.replyView(q_no);
+		
 		QuestionDTO dto = service.detail(questionnum, m_id);
 		
+		request.setAttribute("list", list);
 		request.setAttribute("dto", dto);
 		
 		Forward f=new Forward();

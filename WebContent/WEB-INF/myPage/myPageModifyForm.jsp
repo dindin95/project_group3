@@ -117,6 +117,7 @@ String m_id = (String) session.getAttribute("m_id"); // Object 타입이므로 �
 				<br>
 				
 				<input type="submit" class="btn btn-primary btn-round btn-lg" onclick="save()" style="width: 100%" value="저장">
+				<a href="myPageList.do" class="btn btn-primary btn-round btn-lg" style="width: 100%"> 뒤로가기 </a>
 	        </div>
 	        </form>
         </div>

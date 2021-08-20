@@ -20,7 +20,7 @@ public class LoginAction implements Action {
 		/*
 		 * Forward forward = new Forward(); forward.setForward(true);
 		 * forward.setPath("/main.jsp?page=login.jsp"); return forward;
-		 */
+		 */  
 		
 		System.out.println("loginAction");
 		

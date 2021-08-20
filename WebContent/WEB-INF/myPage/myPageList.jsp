@@ -103,6 +103,7 @@ String m_id = (String) session.getAttribute("m_id"); // Object 타입이므로 �
 					<br>
 	
 					<a href="myPageModifyForm.do" class="btn btn-primary btn-round btn-lg" style="width: 100%"> 수정 </a>
+					<a href="myPage.do" class="btn btn-primary btn-round btn-lg" style="width: 100%"> 뒤로가기 </a>
 		        </div>
 	        </form>
         </div>
