@@ -289,7 +289,16 @@ public class QuestionService {
 			try {
 				conn=dbconn.getConnection();
 				AnswerDAO answerDAO= new AnswerDAO();
-				answerDAO.answerAdd(conn,answerDTO);
+				
+				int q_no = answerDTO.getQ_no();
+				System.out.println("q_no"+q_no);
+				List<AnswerDTO> list = answerDAO.getView(conn, q_no);
+				
+				if(list.size() < 1 ) {
+					answerDAO.answerAdd(conn,answerDTO);
+				}
+				
+				
 				
 			}catch(SQLException | NamingException e) {
 				System.out.println(e);
@@ -300,7 +309,7 @@ public class QuestionService {
 			
 		}
 
-		public void questionRemove(int ano, int qno) {
+		public void answerRemove(int ano, int qno) {
 			DBConnection dbconn = DBConnection.getDBConn();
 			Connection conn = null;
 			
@@ -316,6 +325,25 @@ public class QuestionService {
 				if(conn!=null)try {conn.close();}catch(SQLException e) {}
 			}
 			
+		}
+
+		public void answerModify(AnswerDTO answerDTO ) {
+			
+			DBConnection dbconn = DBConnection.getDBConn();
+			Connection conn =null;
+			try {
+				conn=dbconn.getConnection();
+				AnswerDAO answerDAO= new AnswerDAO();
+				 answerDAO.answerModify(conn,answerDTO);
+				
+			}catch(SQLException | NamingException e) {
+				System.out.println(e);
+			}finally {
+				if(conn!=null)try {conn.close();}catch(SQLException e) {}
+				
+			}
+			
+
 		}
 		
 		

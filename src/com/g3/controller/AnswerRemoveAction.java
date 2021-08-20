@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.g3.comm.Action;
 import com.g3.comm.Forward;
@@ -24,8 +25,21 @@ public class AnswerRemoveAction implements Action {
                            
 	    System.out.println(qno+" and "+ano);
 		
+		HttpSession session =request.getSession();			
+		String m_id = (String) session.getAttribute("m_id");
+		
+		
+		
 		QuestionService service = QuestionService.getInstance();
-		service.questionRemove(ano,qno);
+		int result = service.checkMember(m_id);
+		
+
+		System.out.println("add actuion result" + result);
+		if(result == 1) {
+			
+			service.answerRemove(ano,qno);
+			
+		}
 		
 		Forward forward = new Forward();
 		forward.setForward(false);

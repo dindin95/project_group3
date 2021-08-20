@@ -25,7 +25,7 @@ public class AnswerAddAction implements Action{
 		request.setCharacterEncoding("utf-8");
 		int qno = Integer.parseInt(request.getParameter("qno"));
 		String aContent = request.getParameter("answer");
-
+	
 
 
 		HttpSession session =request.getSession();			
@@ -34,6 +34,7 @@ public class AnswerAddAction implements Action{
 		AnswerDTO answerDTO = new AnswerDTO();
 		answerDTO.setQ_no(qno);
 		answerDTO.setA_content(aContent);
+		answerDTO.setM_id(m_id);
 
 		
 		QuestionService service = QuestionService.getInstance();

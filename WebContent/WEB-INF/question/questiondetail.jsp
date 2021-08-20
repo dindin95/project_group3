@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
@@ -21,11 +21,11 @@
    
    <%
    		String m_id = (String) session.getAttribute("m_id");
+   
+   int result =(Integer)request.getAttribute("result");
+  
    %>
-   
-   <%
-		if(m_id.equals(dto.getM_id())) {%>
-   
+
    <br>
      <!-- 게시물 내용 출력  -->
      <div class="container my-1">
@@ -47,12 +47,17 @@
      		</table>
      </div>
   </div>
-  
-  <!-- =========댓글 테이블====================== -->
-       		<!-- ======댓글 테이블 ================= -->
+     
+ 
+   
+ 		<!-- ======댓글 테이블 ================= -->
+ 		
+ 		 <div class="container my-1">
+ 		 <div class="row">
 			<table class="table" style="height: 100px">
-			<thead>
-				<tr class="text-">댓글</tr>
+		<thead>
+				<tr class="table-active">댓글</tr>
+			
 				</thead>
 				<tbody >
 					<tr class="table table-bordered" id="replyList">
@@ -69,14 +74,18 @@
 			<form method="post" action="answerAdd.do">
 			<input type="hidden" name="qno" value="${dto.q_no }">
 			<textarea class="form-control"  placeholder="댓글 입력하세요" name="answer" id="answerBox" maxlength="2048" rows="500" cols="500" style="max-height: 50px"> </textarea>
+	
 			<button class="btn btn-primary btn-round" type="submit">댓글등록</button>
 		
 		</form>
 		</div>
   </div>
+   </div>
+    </div>
     
   
-  
+
+			
   
 <!-- 버튼 생성 -->
 			<div class="row text-center" style="width: 100%">
@@ -86,13 +95,6 @@
 					<input type="button" class="btn btn-primary" onclick="location.href='question.do'" value="목록">
 				</div>
 			</div>
-			
-			<% } else{ %>
-				<script>
-					alert("사용자의 글이 아니므로 상세 볼 수 없습니다.");
-					location.href = "question.do";
-				</script>
-			<%} %>
 			
 			
 <script>
@@ -113,11 +115,13 @@ $(document).ready(function(){
 	   
 	   $.each(data,function(index,item){
 
+		
    let result =" ";
-   result +="<td>"+ item.a_content+"<br>";
-   result +="<br><br><style='text-align: right, font-size: small'>"+ item.a_writeDate + "<br>작성자" + item.m_id;
+   result += "<br><h3>"+item.a_content+"</h3>";
+   result +="<style='text-align: right, font-size: small'>"+ item.a_writeDate + "<br>작성자" + item.m_id;
    result+="<button class='btn btn-primary btn-sm' onclick=answerRemove("+item.a_no+ ","+item.q_no+")>삭제</button>";
-   result+="</td>";
+
+ 
    
    
    $('#replyList').append(result);
@@ -144,6 +148,8 @@ function answerRemove(a_no,q_no){
 	  
 	   location.href="answerRemove.do?a_no="+a_no+"&q_no="+q_no;
 }
+
+
 
 </script>			
 <jsp:include page="../includes/footer.jsp" />
