@@ -93,15 +93,15 @@ public class AnswerDAO {
 
 	public void answerAdd(Connection conn, AnswerDTO answerDTO) {
 
+		System.out.println(answerDTO.getM_id());
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append(" insert into answer_g3 (         		 ");
-		sql.append("               a_no  					 ");
-		sql.append("              ,q_no   					 ");
+		sql.append("               q_no   					 ");
 		sql.append("              ,a_content 				 ");
 		sql.append("              ,a_writeDate 				 ");
 		sql.append("              ,m_id )       			 ");
-		sql.append(" values ( g3_seq.NEXTVAL,?,?,sysdate,? ) ");
+		sql.append(" values ( ?,?,sysdate(),? )				 ");
 		
 		try(PreparedStatement pstmt= conn.prepareStatement(sql.toString());){
 			
@@ -132,6 +132,35 @@ public class AnswerDAO {
 		}catch(SQLException e) {
 			System.out.println(e);
 		}
+		
+	}
+
+
+	public void answerModify(Connection conn, AnswerDTO answerDTO) {
+	
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append(" update  answer_g3          		     ");
+		sql.append("         set      						 ");
+		sql.append("              ,a_content = ? 			 ");
+		sql.append("              ,a_writeDate 				 ");
+		sql.append("              ,m_id        			     ");
+		sql.append(" where 									 ");
+		sql.append("               a_no = ?					 ");
+		
+		try(PreparedStatement pstmt= conn.prepareStatement(sql.toString());){
+			
+
+			pstmt.setString(1, answerDTO.getA_content());
+			pstmt.setInt(2, answerDTO.getA_no());
+			
+			pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			System.out.println(e);
+		}
+		
+
 		
 	}
 

@@ -29,6 +29,8 @@ public class AnswerViewAction implements Action {
 		QuestionService  questionService = QuestionService.getInstance();
 		
 		int result = questionService.checkMember(m_id);
+		
+		request.setAttribute("result", result);
 	
 		System.out.println("m_id result" +result);
 		
