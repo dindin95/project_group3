@@ -12,12 +12,12 @@ import com.g3.dto.MemberDTO;
 
 public class AnswerDAO {
 	
-	//°ü¸®ÀÚ È®ÀÎÈ®ÀÎ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½È®ï¿½ï¿½
 	public int checkMember(Connection conn ,String m_id) {
 		
 		StringBuilder sql = new StringBuilder();
 		
-		//(m_id, m_name, m_pwd, m_phone, m_date, m_level 1 °ü¸®ÀÚ
+		//(m_id, m_name, m_pwd, m_phone, m_date, m_level 1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		sql.append("select               ");
 		sql.append("       m_id          ");
 		sql.append("      ,m_level       ");
@@ -47,7 +47,7 @@ public class AnswerDAO {
 	}
 	
 	
-//»ç¿ëÀÚ »ó°ü¾øÀÌ º¸¿©ÁÜ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<AnswerDTO> getView(Connection conn,int qno) {
 		
 		StringBuilder sql = new StringBuilder();
@@ -135,33 +135,5 @@ public class AnswerDAO {
 		
 	}
 
-
-	public void answerModify(Connection conn, AnswerDTO answerDTO) {
-	
-		
-		StringBuilder sql = new StringBuilder();
-		sql.append(" update  answer_g3          		     ");
-		sql.append("         set      						 ");
-		sql.append("              ,a_content = ? 			 ");
-		sql.append("              ,a_writeDate 				 ");
-		sql.append("              ,m_id        			     ");
-		sql.append(" where 									 ");
-		sql.append("               a_no = ?					 ");
-		
-		try(PreparedStatement pstmt= conn.prepareStatement(sql.toString());){
-			
-
-			pstmt.setString(1, answerDTO.getA_content());
-			pstmt.setInt(2, answerDTO.getA_no());
-			
-			pstmt.executeUpdate();
-			
-		}catch(SQLException e) {
-			System.out.println(e);
-		}
-		
-
-		
-	}
 
 }

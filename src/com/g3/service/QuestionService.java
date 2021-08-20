@@ -346,25 +346,6 @@ public class QuestionService {
 				return dto;
 			}
 
-
-		public void answerModify(AnswerDTO answerDTO ) {
-			
-			DBConnection dbconn = DBConnection.getDBConn();
-			Connection conn =null;
-			try {
-				conn=dbconn.getConnection();
-				AnswerDAO answerDAO= new AnswerDAO();
-				 answerDAO.answerModify(conn,answerDTO);
-				
-			}catch(SQLException | NamingException e) {
-				System.out.println(e);
-			}finally {
-				if(conn!=null)try {conn.close();}catch(SQLException e) {}
-				
-			}
-			
-
-		}
 		
 		}	
 	
