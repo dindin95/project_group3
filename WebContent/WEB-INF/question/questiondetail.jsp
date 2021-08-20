@@ -30,6 +30,7 @@
      <!-- 게시물 내용 출력  -->
      <div class="container my-1">
      	<div class="row">
+     	<p>※ 이미 답변이 달린 게시글은 삭제할 수 없습니다.</p>
      		<table class="table">
      			
      				<tr class="table-active">
@@ -99,10 +100,8 @@
 			
 <script>
 $(document).ready(function(){
-
 	
 	let q_qno =${dto.q_no};
-
 	
 	$.ajax({
 		
@@ -114,13 +113,11 @@ $(document).ready(function(){
 	   console.log('성공');
 	   
 	   $.each(data,function(index,item){
-
 		
    let result =" ";
    result += "<br><h3>"+item.a_content+"</h3>";
    result +="<style='text-align: right, font-size: small'>"+ item.a_writeDate + "<br>작성자" + item.m_id;
    result+="<button class='btn btn-primary btn-sm' onclick=answerRemove("+item.a_no+ ","+item.q_no+")>삭제</button>";
-
  
    
    
@@ -140,17 +137,12 @@ $(document).ready(function(){
 	
 	
 });
-
-
 function answerRemove(a_no,q_no){
 	 console.log(a_no);
 	   console.log(q_no);
 	  
 	   location.href="answerRemove.do?a_no="+a_no+"&q_no="+q_no;
 }
-
-
-
 </script>			
 <jsp:include page="../includes/footer.jsp" />
 
@@ -158,6 +150,3 @@ function answerRemove(a_no,q_no){
 
 
 </html>
-
-
-

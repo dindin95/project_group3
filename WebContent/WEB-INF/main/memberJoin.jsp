@@ -85,24 +85,24 @@ String m_id = (String) session.getAttribute("m_id"); // Object 타입이므로 �
             <br>
             
             <label for="m_id" class="lebox">아이디</label> 
-            <input class="inbox" required="required"  name="m_id" id="m_id" value="<c:out value="${dto.m_id}"/>" />
+            <input type="text" class="inbox" required="required"  name="m_id" id="m_id" value="<c:out value="${dto.m_id}"/>" />
             
             
             <br>
             
             <label for="m_pwd" class="lebox">비밀번호</label> 
-            <input  class="inbox" required="required"  name="m_pwd" value="<c:out value="${dto.m_pwd}"/>" />
+            <input type="password" class="inbox" required="required"  name="m_pwd" value="<c:out value="${dto.m_pwd}"/>" />
          
             <br>
             
             <label for="m_pwd" class="lebox">비밀번호 확인</label> 
-            <input class="inbox" required="required"  name="m_pwd2" value="<c:out value="${dto.m_pwd}"/>" />
+            <input type="password" class="inbox" required="required"  name="m_pwd2" value="<c:out value="${dto.m_pwd}"/>" />
             
             <br>
             
          
          <label for="m_phone" class="lebox">휴대폰번호</label> 
-            <input class="inbox"  required="required"  name="m_phone" value="<c:out value="${dto.m_phone}"/>" />
+            <input type="text" class="inbox"  required="required"  name="m_phone" value="<c:out value="${dto.m_phone}"/>" />
             
          
            <br>

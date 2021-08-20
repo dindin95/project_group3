@@ -250,6 +250,9 @@
 		 
 		 if(start.length > 1) {
 			 alert("한 타임만 선택해주세요.");
+			 $(a).remove();
+			 $(b).remove();
+			 return false;
 		 }
 		return true;
    }

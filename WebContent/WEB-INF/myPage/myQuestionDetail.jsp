@@ -34,6 +34,7 @@
      <!-- 게시물 내용 출력  -->
      <div class="container my-1">
      	<div class="row">
+     	<p>※ 이미 답변이 달린 게시글은 삭제할 수 없습니다.</p>
      		<table class="table">
      			
      				<tr class="table-active">

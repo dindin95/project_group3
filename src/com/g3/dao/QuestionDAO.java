@@ -218,7 +218,6 @@ public class QuestionDAO {
 			 ){
 				pstmt.setInt(1, q_no);
 				pstmt.executeUpdate();
-				System.out.println(q_no);
 			}catch(SQLException e)
 			{
 				System.out.println(e);
