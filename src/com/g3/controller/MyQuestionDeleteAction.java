@@ -9,32 +9,31 @@ import javax.servlet.http.HttpSession;
 
 import com.g3.comm.Action;
 import com.g3.comm.Forward;
-import com.g3.service.MyPageService;
+import com.g3.dao.QuestionDAO;
+import com.g3.service.QuestionService;
 
-public class MemberDeleteAction implements Action {
+public class MyQuestionDeleteAction implements Action{
 
 	@Override
 	public Forward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		System.out.println("MyQuestionDeleteAction");
 		
 		HttpSession session =request.getSession();
 		String m_id = (String) session.getAttribute("m_id");
-				
-		MyPageService service = MyPageService.getService();
-		service.memberDelete(m_id);
 		
-		Forward f = new Forward();
-		f.setForward(false);
-		f.setPath("main.do");
+		int q_no = Integer.parseInt(request.getParameter("q_no"));
 		
+		QuestionService service = QuestionService.getInstance();
+		service.delete(q_no);
 		
-		session.invalidate(); //기존의 세션 데이터를 모두 삭제
+		Forward forward=new Forward();
+		forward.setForward(false);
+		forward.setPath("myQuestion.do?m_id=" + m_id);
 		
-		return f;
-		
-		
+		return forward;
 	}
 
 }

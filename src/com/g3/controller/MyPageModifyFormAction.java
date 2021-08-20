@@ -20,9 +20,6 @@ public class MyPageModifyFormAction implements Action {
 		// TODO Auto-generated method stub
 		
 		
-		
-		System.out.println("MyPageModifyFormAction");
-		
 		HttpSession session =request.getSession();
 		String m_id = (String) session.getAttribute("m_id");
 		

@@ -5,36 +5,33 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.g3.comm.Action;
 import com.g3.comm.Forward;
-import com.g3.dto.LoginDTO;
-import com.g3.dto.MyPageDTO;
-import com.g3.service.MyPageService;
+import com.g3.dto.QuestionDTO;
+import com.g3.service.QuestionService;
 
-public class MyPageListAction implements Action {
+public class MyQuestionModifyAction implements Action{
 
 	@Override
 	public Forward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		int q_no = Integer.parseInt(request.getParameter("q_no"));
 		
-		HttpSession session =request.getSession();
-		String m_id = (String) session.getAttribute("m_id");
+		//서비스 불러오기
+		QuestionService service = QuestionService.getInstance();
+		QuestionDTO dto = service.getQuestion(q_no);
 		
-		MyPageService service = MyPageService.getService();
-		MyPageDTO dto = service.getMyPageList(m_id);
 		request.setAttribute("dto", dto);
 		
-		Forward forward = new Forward();
+		Forward forward=new Forward();
 		forward.setForward(true);
-		forward.setPath("WEB-INF/myPage/myPageList.jsp");
-
+		forward.setPath("WEB-INF/myPage/myQuestionModify.jsp");
+		
+		
 		return forward;
-		
-		
 	}
 
 }

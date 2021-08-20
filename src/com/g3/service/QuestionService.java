@@ -183,7 +183,7 @@ public class QuestionService {
 	}
 
 	
-	//�굹�쓽 臾몄쓽湲� 議고쉶 媛��닔 
+	//나의 문의글 총 갯수 
 	public int getMyTotalCount(String search, String searchtxt, String m_id) {
 		DBConnection dbconn = DBConnection.getDBConn();
 		Connection conn=null;
@@ -195,7 +195,6 @@ public class QuestionService {
 		       QuestionDAO dao=QuestionDAO.getDAO();
 	           
 	          totalcount= dao.getMyTotalCount(conn,search, searchtxt, m_id);
-	          System.out.println("totalcount!!! : "+totalcount);
 		       
 		       conn.commit();
 		   } catch(SQLException|NamingException e)
@@ -209,7 +208,7 @@ public class QuestionService {
 		   return totalcount;
 		}
 		
-		//�굹�쓽 臾몄쓽湲� 議고쉶 
+		//나의 문의글 내역 
 		public List<QuestionDTO> getMyList(int startrow, int endrow, String search, String searchtxt, String m_id) {
 			// TODO Auto-generated method stub
 			
@@ -289,7 +288,16 @@ public class QuestionService {
 			try {
 				conn=dbconn.getConnection();
 				AnswerDAO answerDAO= new AnswerDAO();
-				answerDAO.answerAdd(conn,answerDTO);
+				
+				int q_no = answerDTO.getQ_no();
+				System.out.println("q_no"+q_no);
+				List<AnswerDTO> list = answerDAO.getView(conn, q_no);
+				
+				if(list.size() < 1 ) {
+					answerDAO.answerAdd(conn,answerDTO);
+				}
+				
+				
 				
 			}catch(SQLException | NamingException e) {
 				System.out.println(e);
@@ -300,7 +308,7 @@ public class QuestionService {
 			
 		}
 
-		public void questionRemove(int ano, int qno) {
+		public void answerRemove(int ano, int qno) {
 			DBConnection dbconn = DBConnection.getDBConn();
 			Connection conn = null;
 			
@@ -317,12 +325,29 @@ public class QuestionService {
 			}
 			
 		}
+		//내 문의글 디테일 
+		public QuestionDTO detail(int questionnum, String m_id) {
+			DBConnection dbconn=DBConnection.getDBConn();
+			Connection conn=null;
+			QuestionDTO dto = new QuestionDTO();
+			try {
+				conn=dbconn.getConnection();
+				QuestionDAO dao = new QuestionDAO();
+				dto = dao.detail(conn, questionnum, m_id);
+				
+			}catch(SQLException|NamingException e)
+			{
+				System.out.println(e);
+			}finally {
+				if(conn!=null) try { conn.close();} catch(SQLException e) {}
+			}
+				return dto;
+			}
+		
+		}
 		
 		
 		
-		
-		
-	}
 	
 
 	

@@ -17,13 +17,6 @@ public class MyPageAction implements Action {
 		// TODO Auto-generated method stub
 		
 		
-		/*
-		 * Forward forward = new Forward(); forward.setForward(true);
-		 * forward.setPath("/main.jsp?page=login.jsp"); return forward;
-		 */
-		
-		System.out.println("mypage");
-		
 		
 		Forward forward = new Forward();
 		forward.setForward(true);

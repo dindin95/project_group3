@@ -10,11 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import com.g3.comm.Action;
 import com.g3.comm.Forward;
-import com.g3.dto.BookingListDTO;
 import com.g3.dto.MybookingDTO;
-import com.g3.dto.QuestionDTO;
 import com.g3.service.MyPageService;
-import com.g3.service.QuestionService;
 
 public class MyBookingAction implements Action {
 
@@ -24,13 +21,16 @@ public class MyBookingAction implements Action {
 		
 		System.out.println("MyBookingAction");
 		
+		request.setCharacterEncoding("utf-8");	
+		
 		HttpSession session =request.getSession();
 		String m_id = (String) session.getAttribute("m_id");
 		
-		String curr=request.getParameter("curr");
+		 String curr=request.getParameter("curr");
 		  
 		   int currpage=1;
-		   if(curr!=null) {
+		   if(curr!=null)
+		   {
 			   currpage=Integer.parseInt(curr);
 		   }
 			
@@ -40,21 +40,23 @@ public class MyBookingAction implements Action {
 		 int totalcount= service.getTotalCount(m_id);
 		 int pagepercount= 10;  //1페이지에 보여줄 자료수
 
-		 System.out.println(totalcount + "    sss ");
 		 
-		 int totalpage=(int) Math.ceil((float)totalcount/pagepercount);
-				 
-		 int startrow=(currpage-1)*pagepercount+1;
-		 int endrow=startrow+pagepercount-1;
+		 int totalpage =(int) Math.ceil((float)totalcount/pagepercount);
 		 
-		 if(endrow>totalcount)
+		 int startrow=(currpage-1) * pagepercount+1;
+		 int endrow  =  startrow + pagepercount - 1;
+		 
+		 if(endrow>totalcount) {
 			 endrow=totalcount;
+		 }
+		 
 		 
 		 int blockcount=3;
 		 int startblock=(currpage-1)/blockcount*blockcount+1;
 		 int endblock=startblock+blockcount-1;
 		 
-		 if(endblock>totalpage){
+		 if(endblock>totalpage)
+		 {
 			 endblock=totalpage;
 		 }
 		
@@ -62,7 +64,6 @@ public class MyBookingAction implements Action {
 		
 		List<MybookingDTO> list = service.getList(startrow,endrow, m_id);
 		
-		System.out.println("ac    " +list.size() );
 		
 		request.setAttribute("list", list);
 		request.setAttribute("currpage", currpage);

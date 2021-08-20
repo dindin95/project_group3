@@ -103,7 +103,7 @@
 					<div id="wrap">
 						<c:if test="${sessionScope.m_id==null }">
 							<li class="nav-item"><a class="nav-link" style="font-size: 20px" href="login.do">LOGIN</a></li>
-							<li class="nav-item"><a class="nav-link" style="font-size: 20px" href="#" >SIGN UP</a></li>
+							<li class="nav-item"><a class="nav-link" style="font-size: 20px" href="memberform.do" >SIGN UP</a></li>
 						</c:if>
 						<c:if test="${sessionScope.m_id != null }">
 							<li class="nav-item"><a class="nav-linkid" style="font-size: 20px" href="myPage.do"><%=m_id%>님</a></li>

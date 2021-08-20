@@ -29,7 +29,7 @@ String m_id = (String) session.getAttribute("m_id"); // Object 타입이므로 �
 
 <form action="mybookingDelete.do" method="post">
 	<div class="container">
-		<table class="table table-hover">
+		<table class="table table-hover" style="margin: auto">
 		  <thead>
 		   		<tr>
 			   		<th>번호</th>

@@ -22,8 +22,6 @@ public class MyPageModifyAction implements Action {
 		
 		request.setCharacterEncoding("utf-8");
 		
-		System.out.println("MyPageModifyAction");
-		
 		HttpSession session =request.getSession();
 		String m_id = (String) session.getAttribute("m_id");
 		

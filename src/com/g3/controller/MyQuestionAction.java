@@ -67,7 +67,6 @@ public class MyQuestionAction implements Action {
 		 {
 			 endblock=totalpage;
 		 }
-		 
 		
 		List<QuestionDTO> list = service.getMyList(startrow,endrow,search,searchtxt ,  m_id);
 		request.setAttribute("list", list);
@@ -82,7 +81,7 @@ public class MyQuestionAction implements Action {
 		
 		Forward forward=new Forward();
 		forward.setForward(true);
-		forward.setPath("WEB-INF/question/question.jsp");
+		forward.setPath("WEB-INF/myPage/myQuestion.jsp");
 		
 		
 		return forward;
