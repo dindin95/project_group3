@@ -183,7 +183,7 @@ public class QuestionService {
 	}
 
 	
-	//나의 문의글 총 갯수 
+	//�굹�쓽 臾몄쓽湲� 議고쉶 媛��닔 
 	public int getMyTotalCount(String search, String searchtxt, String m_id) {
 		DBConnection dbconn = DBConnection.getDBConn();
 		Connection conn=null;
@@ -195,6 +195,7 @@ public class QuestionService {
 		       QuestionDAO dao=QuestionDAO.getDAO();
 	           
 	          totalcount= dao.getMyTotalCount(conn,search, searchtxt, m_id);
+	          System.out.println("totalcount!!! : "+totalcount);
 		       
 		       conn.commit();
 		   } catch(SQLException|NamingException e)
@@ -208,7 +209,7 @@ public class QuestionService {
 		   return totalcount;
 		}
 		
-		//나의 문의글 내역 
+		//�굹�쓽 臾몄쓽湲� 議고쉶 
 		public List<QuestionDTO> getMyList(int startrow, int endrow, String search, String searchtxt, String m_id) {
 			// TODO Auto-generated method stub
 			
@@ -343,6 +344,7 @@ public class QuestionService {
 			}
 				return dto;
 			}
+
 		
 		}
 		
