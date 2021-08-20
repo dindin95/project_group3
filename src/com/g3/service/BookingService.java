@@ -31,7 +31,7 @@ public class BookingService {
 	           
 	           BookingDAO dao = new BookingDAO();
 	           
-	           result = dao.insertTime(conn, time);
+	           result = dao.insertTime(conn, time); 
 	           conn.commit();
 	           
 	           timeResult = dao.selectTime(conn, time);

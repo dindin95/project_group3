@@ -43,8 +43,8 @@ public class BookingDAO {
    //selectTime 메서드 리턴 값을 int로 잡아서 그 값을 insertBooking에 넘겨주기
    public int selectTime(Connection conn, TimeDTO time) {
       StringBuilder sql = new StringBuilder();
-      sql.append("   select t_no      ");
-      sql.append("   from time_g3     ");
+      sql.append("   select t_no       ");
+      sql.append("   from time_g3      ");
       
       int timeResult = 0;
       

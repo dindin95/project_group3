@@ -246,7 +246,7 @@
 		 $(a).appendTo('form');
 		 $(b).appendTo('form');
 		 
-		 if(start.length > 1) {
+		 if(start.length > 1){
 			 alert("한 타임만 선택해주세요.");
 			 
 			 $(a).remove();

@@ -27,7 +27,7 @@ public class BookingInsertAction implements Action {
 		int bo_persons = Integer.parseInt(request.getParameter("bo_persons"));
 		
 		TimeDTO time = new TimeDTO();
-		BookingDTO Booking = new BookingDTO();
+		BookingDTO Booking = new BookingDTO(); 
 		
 		Booking.setM_id(m_id);
 		time.setBo_room(bo_room);
