@@ -29,12 +29,12 @@ String m_id = (String) session.getAttribute("m_id"); // Object 타입이므로 �
 
 <form action="mybookingDelete.do" method="post">
 	<div class="container">
-		<table class="table table-hover">
+		<table class="table table-hover" style="margin: auto">
 		  <thead>
 		   		<tr>
 			   		<th>번호</th>
 			  		<th>예약 일자</th>
-			  		<th>예약 시간</th>
+			  		<th>예약 인원</th>
 			  		<th>룸</th>
 		  		</tr>
 		  </thead>
@@ -42,7 +42,21 @@ String m_id = (String) session.getAttribute("m_id"); // Object 타입이므로 �
 			       <td><c:out value="${item.bo_no }"/></td>
 
 			      <td><c:out value="${item.bo_date }"/></td>
-			      <td><c:out value="${item.time }"/></td>
+			     	<c:if test="${item.bo_persons == 1 }">
+				               <td><c:out value="~2명"></c:out></td>
+					</c:if>
+			     	<c:if test="${item.bo_persons == 2 }">
+				               <td><c:out value="3명"></c:out></td>
+					</c:if>
+			     	<c:if test="${item.bo_persons == 3 }">
+				               <td><c:out value="4명"></c:out></td>
+					</c:if>
+			     	<c:if test="${item.bo_persons == 4 }">
+				               <td><c:out value="5명"></c:out></td>
+					</c:if>
+			     	<c:if test="${item.bo_persons == 5 }">
+				               <td><c:out value="6명"></c:out></td>
+					</c:if>
 			      
 			     	<c:if test="${item.bo_room == 1 }">
 				               <td><c:out value="Room A"></c:out></td>

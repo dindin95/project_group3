@@ -43,10 +43,8 @@ public class LoginDAO {
 			pstmt.setString(1, m_id );
 			rs= pstmt.executeQuery();
 			
-			System.out.println("?" + rs);
 			
 			if(rs.next()) {
-				System.out.println("aas? "+ rs.getString("m_pwd"));
 				
 				if(rs.getString("m_pwd").equals(m_pwd)) { 
 					result = 1; //일치 
@@ -61,7 +59,6 @@ public class LoginDAO {
 			if(rs != null) try {rs.close();} catch(SQLException e) {}
 		}
 		
-		System.out.println("dao " + result);
 		
 		return result;
 	}

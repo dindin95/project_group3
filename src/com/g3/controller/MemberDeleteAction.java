@@ -19,9 +19,6 @@ public class MemberDeleteAction implements Action {
 		// TODO Auto-generated method stub
 		
 		
-		
-		System.out.println("MemberDeleteAction");
-		
 		HttpSession session =request.getSession();
 		String m_id = (String) session.getAttribute("m_id");
 				

@@ -22,17 +22,17 @@ public class QuestionDAO {
 		// TODO Auto-generated method stub
 		
 		StringBuilder sql=new StringBuilder();
-		  sql.append("   select   *                              ");
-		  sql.append("   from (                                  ");
+		  sql.append("   select   *                              			 ");
+		  sql.append("   from (                                  			 ");
 		  sql.append("          select @rownum:=@rownum+1 as rnum, A.*       ");
-		  sql.append("          from (                           ");
-		  sql.append("                   select                  ");
-		  sql.append("                            q_no    		 ");
-		  sql.append("                            ,q_title    	 ");
-		  sql.append("                            ,q_content         ");
-		  sql.append("                            ,m_id        		 ");
-		  sql.append("                            ,q_writedate       ");
-		  sql.append("                   from question_g3            ");
+		  sql.append("          from (                          			 ");
+		  sql.append("                   select                 			 ");
+		  sql.append("                            q_no    		 			 ");
+		  sql.append("                            ,q_title    				 ");
+		  sql.append("                            ,q_content         		 ");
+		  sql.append("                            ,m_id        		 		 ");
+		  sql.append("                            ,q_writedate       		 ");
+		  sql.append("                   from question_g3            		 ");
 		  
 	   if(!search.equals("")&& !searchtxt.equals(""))
 	   {
@@ -255,129 +255,175 @@ public class QuestionDAO {
 	}
 
 	//나의 문의글 조회 갯수 
-		public int getMyTotalCount(Connection conn, String search, String searchtxt, String m_id) {
-			StringBuilder sql = new StringBuilder();
-			sql.append("       select   count(*)      ");
-			sql.append("       from    question_g3    ");
-			sql.append("       where m_id = ?		  ");
-			
+	public int getMyTotalCount(Connection conn, String search, String searchtxt, String m_id) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("       select   count(*)      ");
+		sql.append("       from    question_g3    ");
+		sql.append("       where m_id = ?		  ");
+		
+		if(!search.equals("") && !searchtxt.equals(""))
+		  {
+		    if(search.equals("q_title"))
+			 {
+		    	sql.append(" and lower(q_title) like  ? ");
+			 }else if(search.equals("q_content"))
+			 {
+			    	sql.append(" and lower(q_content) like  ? ");
+				 }
+		 }
+		
+		int totalcount = 0;
+		ResultSet rs = null;
+		try(
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+				){
 			if(!search.equals("") && !searchtxt.equals(""))
-			  {
-			    if(search.equals("q_title"))
-				 {
-			    	sql.append(" and lower(q_title) like  ? ");
-				 }else if(search.equals("q_content"))
-				 {
-				    	sql.append(" and lower(q_content) like  ? ");
-					 }
+			 {
+				  pstmt.setString(1, m_id);
+				  pstmt.setString(2, "%"+searchtxt.toLowerCase()+"%");
+			 }else {
+				 pstmt.setString(1, m_id);
 			 }
 			
-			int totalcount = 0;
-			ResultSet rs = null;
-			try(
-					PreparedStatement pstmt = conn.prepareStatement(sql.toString());
-					){
-				if(!search.equals("") && !searchtxt.equals(""))
-				 {
-					  pstmt.setString(1, "%"+searchtxt.toLowerCase()+"%");
-				 }else {
-					 pstmt.setString(1, m_id);
-				 }
-				
-				rs=pstmt.executeQuery();		
-				if(rs.next())
-				{
-					totalcount=rs.getInt(1);
-				}
-				
-			} catch(SQLException e)
+			rs=pstmt.executeQuery();		
+			if(rs.next())
 			{
-				System.out.println(e);
-			}finally {
-				if(rs!=null) try { rs.close();} catch(SQLException e) {}
+				totalcount=rs.getInt(1);
 			}
 			
-			return totalcount;
+		} catch(SQLException e)
+		{
+			System.out.println(e);
+		}finally {
+			if(rs!=null) try { rs.close();} catch(SQLException e) {}
 		}
+		
+		return totalcount;
+	}
 
 		
-		//나의 문의글 조회 
-		public List<QuestionDTO> getMyList(Connection conn, int startrow, int endrow, String search, String searchtxt,
-				String m_id) {
-			StringBuilder sql=new StringBuilder();
-			  sql.append("   select   *                              ");
-			  sql.append("   from (                                  ");
-			  sql.append("          select rownum as rnum, b.*       ");
-			  sql.append("          from (                           ");
-			  sql.append("                   select                  ");
-			  sql.append("                            q_no    		 ");
-			  sql.append("                            ,q_title    	 ");
-			  sql.append("                            ,q_content     ");
-			  sql.append("                            ,m_id          ");
-			  sql.append("                            ,q_writedate   ");
-			  sql.append("                   from question_g3        ");
-			  sql.append("                   where m_id = ?		     ");
+	//나의 문의글 조회 
+	public List<QuestionDTO> getMyList(Connection conn, int startrow, int endrow, String search, String searchtxt, String m_id) {
+		StringBuilder sql=new StringBuilder();
+		  sql.append("   select   *                              			 ");
+		  sql.append("   from (                                  			 ");
+		  sql.append("          select @rownum:=@rownum+1 as rnum, A.*       ");
+		  sql.append("          from (                          			 ");
+		  sql.append("                   select                 			 ");
+		  sql.append("                            q_no    		 			 ");
+		  sql.append("                            ,q_title    				 ");
+		  sql.append("                            ,q_content         		 ");
+		  sql.append("                            ,m_id        		 		 ");
+		  sql.append("                            ,q_writedate       		 ");
+		  sql.append("                   from question_g3            		 ");
+		  sql.append("                   where m_id = ?		    			 ");
+		  
+		  if(!search.equals("")&& !searchtxt.equals("")){
 			  
-		   if(!search.equals("")&& !searchtxt.equals(""))
-		   {
-		     if(search.equals("q_title"))
-		     {
+		     if(search.equals("q_title")){
+		    	 
+		    	System.out.println("ssss");
 			  sql.append("              and lower(q_title) like ?        ");
-		     }else if(search.equals("q_content"))
-		     {
-		    	 sql.append("     and lower(q_content)  like  ?    ");
+
+		     	}else if(search.equals("q_content")){
+		    
+		     		System.out.println("sdasdasd");
+		    	 sql.append("     and lower(q_content)  like  ?    		");
+		    	 
 		     }
 		    }	  
-			  sql.append("                   order by q_no desc  ");
-			  sql.append("                )b                         ");
-			  sql.append("        )                                  ");
-			  sql.append("  where rnum>=?  and rnum<=?               ");
+			  sql.append("                   order by q_no desc  			");
+			  sql.append("                )A, (select @rownum:=0) R         ");
+			  sql.append("        ) B                                 		");
+			  sql.append("  where rnum>=?  and rnum<=?               		");
 
+
+		  System.out.println("ddd>>  " + search);
+		  System.out.println("searchtxt >>> " + searchtxt);
+		  System.out.println("startrow >>> " + startrow);
+		  System.out.println("endrow >>> " + endrow);
 			  
-			  ResultSet rs=null;
-			  ArrayList<QuestionDTO> list=new ArrayList<QuestionDTO>();
-			  try(
-				  PreparedStatement pstmt=conn.prepareStatement(sql.toString());
-				) {
-				  
-				 if(!search.equals("") &&  !searchtxt.equals("")) 
-				 {
-					 pstmt.setString(1, "%"+searchtxt.toLowerCase()+"%");
-					 pstmt.setInt(2, startrow);
-					 pstmt.setInt(3, endrow);
+		  ResultSet rs=null;
+		  ArrayList<QuestionDTO> list=new ArrayList<QuestionDTO>();
+		  try(
+			  PreparedStatement pstmt=conn.prepareStatement(sql.toString());
+			) {
+			  
+			 if(!search.equals("") &&  !searchtxt.equals("")) {
+				 
+				 pstmt.setString(1, m_id);
+				 pstmt.setString(2, "%"+searchtxt.toLowerCase()+"%");
+				 pstmt.setInt(3, startrow);
+				 pstmt.setInt(4, endrow);
 
-				 }else
-				 {
-					 pstmt.setString(1, m_id);
-				    pstmt.setInt(2, startrow);
-				    pstmt.setInt(3, endrow);
-				 }
-				 
-				 
-				  rs=pstmt.executeQuery();
-				  while(rs.next())
-				  {
-					QuestionDTO dto=new QuestionDTO();
+			 }else {
+				 pstmt.setString(1, m_id);
+			    pstmt.setInt(2, startrow);
+			    pstmt.setInt(3, endrow);
+			 }
+			 
+			 
+			  rs=pstmt.executeQuery();
+			  while(rs.next())
+			  {
+				QuestionDTO dto=new QuestionDTO();
+				dto.setQ_no(rs.getInt("q_no"));
+				dto.setQ_title(rs.getString("q_title"));
+				dto.setQ_content(rs.getString("q_content"));
+				dto.setM_id(rs.getString("m_id"));
+				dto.setQ_writedate(rs.getString("q_writedate"));
+				list.add(dto);
+			  }
+			  
+			  
+		  }catch(SQLException e)
+		  {
+			  System.out.println(e);
+		  }finally {
+			  if(rs!=null) try { rs.close();} catch(SQLException e) {}
+		  }
+		
+		return list;
+	}
+	
+	//나의 문의글 디테일 
+	public QuestionDTO detail(Connection conn, int questionnum, String m_id) {
+
+		StringBuilder sql = new StringBuilder();
+		sql.append("  select  				");
+		sql.append("  			q_no	    ");
+		sql.append("  		  , q_title  	");
+		sql.append("  		  , q_content  	");
+		sql.append("  		  , m_id  		");
+		sql.append("  		  , q_writedate ");
+		sql.append("  from question_g3	 	");
+		sql.append("  where				  	");
+		sql.append("  		  q_no=?	  	");
+		sql.append("  		 and m_id=?	  	");
+		
+		ResultSet rs=null;
+		QuestionDTO dto=new QuestionDTO();
+		try(
+				PreparedStatement pstmt=conn.prepareStatement(sql.toString());	
+			){
+				pstmt.setInt(1, questionnum);
+				pstmt.setString(2, m_id);
+				rs=pstmt.executeQuery();
+				
+				if(rs.next())
+				{
 					dto.setQ_no(rs.getInt("q_no"));
 					dto.setQ_title(rs.getString("q_title"));
 					dto.setQ_content(rs.getString("q_content"));
 					dto.setM_id(rs.getString("m_id"));
 					dto.setQ_writedate(rs.getString("q_writedate"));
-					list.add(dto);
-				  }
-				  
-				  
-			  }catch(SQLException e)
-			  {
-				  System.out.println(e);
-			  }finally {
-				  if(rs!=null) try { rs.close();} catch(SQLException e) {}
-			  }
-			
-			return list;
+				}
+				
+		}catch(SQLException e)
+		{
+			System.out.println(e);
 		}
-	
-	 
-	
-	
+		
+		return dto;
+	}
 }

@@ -34,9 +34,12 @@ public class MyBookingDeleteAction implements Action {
 		service.myBookingDelete(bo_no);
 		
 		Forward forward=new Forward();
-		forward.setForward(true);
-		forward.setPath("WEB-INF/myPage/myBookingList.jsp");
+		forward.setForward(false);
 		
+		System.out.println("????????????????????????????? 여깃!!!!!!!!!!" + m_id);
+		
+		forward.setPath("myBookingList.do?m_id=" + m_id);
+		  
 		
 		return forward;
 		

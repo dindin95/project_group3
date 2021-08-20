@@ -8,30 +8,30 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.g3.comm.Action;
 import com.g3.comm.Forward;
+import com.g3.dto.QuestionDTO;
+import com.g3.service.QuestionService;
 
-public class LoginAction implements Action {
+public class MyQuestionModifyAction implements Action{
 
 	@Override
 	public Forward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		int q_no = Integer.parseInt(request.getParameter("q_no"));
 		
-		/*
-		 * Forward forward = new Forward(); forward.setForward(true);
-		 * forward.setPath("/main.jsp?page=login.jsp"); return forward;
-		 */  
+		//서비스 불러오기
+		QuestionService service = QuestionService.getInstance();
+		QuestionDTO dto = service.getQuestion(q_no);
 		
-		System.out.println("loginAction");
+		request.setAttribute("dto", dto);
 		
-		
-		Forward forward = new Forward();
+		Forward forward=new Forward();
 		forward.setForward(true);
-		forward.setPath("WEB-INF/main/login.jsp");
-
+		forward.setPath("WEB-INF/myPage/myQuestionModify.jsp");
+		
+		
 		return forward;
-		
-		
 	}
 
 }

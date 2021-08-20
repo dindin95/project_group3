@@ -90,8 +90,6 @@ public class MyPageService {
 	           
 	          totalcount= dao.getTotalCount(conn, m_id);
 
-	          System.out.println("totalcount!!! : "+totalcount);
-		       
 		       conn.commit();
 		   } catch(SQLException|NamingException e)
 		   {
@@ -126,7 +124,6 @@ public class MyPageService {
 			if(conn!=null) try { conn.close();} catch(SQLException e) {}
 		}
 		
-		System.out.println("service = " + list.size());
 		return list;
 	}
 	
@@ -142,7 +139,6 @@ public class MyPageService {
 				
 			MyPageDAO.myPageDelete(conn, bo_no);
 			
-			System.out.println("service " + bo_no);
 			conn.commit();
 		}catch (SQLException | NamingException e) {
 			System.out.println(e);

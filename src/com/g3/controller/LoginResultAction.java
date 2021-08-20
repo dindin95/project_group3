@@ -23,9 +23,6 @@ public class LoginResultAction implements Action {
 		String m_id = request.getParameter("m_id");
 		String m_pwd = request.getParameter("m_pwd");
 		
-		System.out.println(m_id);
-		System.out.println(m_pwd);
-		
 		LoginService service = LoginService.getService();
 		int result = service.check(m_id,m_pwd);
 		

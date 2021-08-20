@@ -97,9 +97,11 @@ public class MyPageDAO {
 	public int getTotalCount(Connection conn, String m_id) {
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("       select   count(*)      ");
-		sql.append("       from    member_g3      ");
-		sql.append("       where m_id = ? 	      ");
+		sql.append("       select   count(*)    			  ");
+		 sql.append("         from booking_g3 a       		  ");
+		 sql.append("          join time_g3 b       		  ");
+		 sql.append("          on a.t_no = b.t_no      		  ");
+		 sql.append("      where a.m_id = ?     			  ");
 		
 		
 		int totalcount = 0;
@@ -129,25 +131,24 @@ public class MyPageDAO {
 	public List<MybookingDTO> getList(Connection conn, int startrow, int endrow, String m_id) {
 		
 		 StringBuilder sql=new StringBuilder();
-		 sql.append("   select   *                                                                                   ");
-		 sql.append("   from (                                                                                       ");
-		 sql.append("          select rownum as rnum, b.*                                                            ");
-		 sql.append("          from (                                                                                ");
+		 sql.append("   select   *                              													 ");
+		 sql.append("   from (                                  													 ");
+		 sql.append("          select @rownum:=@rownum+1 as rnum, A.*       										 ");
+		 sql.append("          from (                          														 ");
 		 sql.append("                   select                                                                       ");
 		 sql.append("                            bo_no   		                                                     ");
 		 sql.append("                            ,m_id   	                                                    	 ");
 		 sql.append("                            ,bo_date   	                                                     ");
 		 sql.append("                            ,bo_room     														 ");
-		 sql.append("                            ,REGEXP_REPLACE((startTime - endTime), '[^0-9]+') as time        	 ");
+		 sql.append("                            ,bo_persons       													 ");
 		 sql.append("                   from booking_g3 a       													 ");
 		 sql.append("                   join time_g3 b       														 ");
 		 sql.append("                   on a.t_no = b.t_no      													 ");
 		 sql.append("                   where   m_id=?		    													 ");
 		 sql.append("                   order by bo_no desc  	 													 ");
-		 sql.append("                )b                         													 ");
-		 sql.append("        )                                  													 ");
-		 sql.append("  where rnum>=?  and rnum<=?               													 ");
-		 
+		 sql.append("                )A, (select @rownum:=0) R                         								 ");
+	     sql.append("        ) B                                 													 ");
+	     sql.append("  where rnum>=?  and rnum<=?               													 ");
 		 
 		  ResultSet rs=null;
 		  List<MybookingDTO> list= new ArrayList<MybookingDTO>();
@@ -157,8 +158,6 @@ public class MyPageDAO {
 			) {
 			  
 			  System.out.println("%%%%%%%%%%%%%%%%%%    " + m_id);
-			  System.out.println("%%%%%%%%%%%%%%%%startrow%%    " + startrow);
-			  System.out.println("%%%%%%%%%%%%%%%%%endrow%    " + endrow);
 
 			  
 			  pstmt.setString(1, m_id);
@@ -173,7 +172,7 @@ public class MyPageDAO {
 				  dto.setBo_no(rs.getInt("bo_no"));
 				  dto.setBo_date(rs.getDate("bo_date"));
 				  dto.setBo_room(rs.getInt("bo_room"));
-				  dto.setTime(rs.getInt("time"));
+				  dto.setBo_persons(rs.getInt("bo_persons"));
 				  dto.setM_id(rs.getString("m_id"));
 				  
 				list.add(dto);
@@ -193,15 +192,15 @@ public class MyPageDAO {
 	public static void myPageDelete(Connection conn, int bo_no) {
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("       delete from booking_g3 a      			");
-		sql.append("       where exists     					    ");
-		sql.append("       (select 	      							");
-		sql.append("        	m_id	      						");
-		sql.append("       			from time_g3 b 	      			");
-		sql.append("      				where a.t_no = b.t_no	 	");
-		sql.append("      				and bo_no = ? ) 			");
+		sql.append("       DELETE    								");
+		sql.append("       		 booking_g3    					    ");
+		sql.append("       		 ,time_g3    					    ");
+		sql.append("      FROM booking_g3     					    ");
+		sql.append("       		INNER JOIN 	 time_g3     			");
+		sql.append("        	ON time_g3.t_no = booking_g3.t_no 	");
+		sql.append("       WHERE	      							");
+		sql.append("      		booking_g3.bo_no = ?	 			");
 		
-		System.out.println(bo_no  + "dao ");
 		try(
 				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 				){

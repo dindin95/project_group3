@@ -23,9 +23,13 @@ public class MemberDAO {
 	public static void memberDelete(Connection conn, String m_id) {
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("delete 						 ");
-		sql.append("from member_g3 				 ");
-		sql.append("	where m_id = ? 			 ");
+		
+		  sql.append("       delete    				");
+		  sql.append("       		 from    		");
+		  sql.append("       		 	member_g3   ");
+		  sql.append("      where   				");
+		  sql.append("       		m_id=?    		");
+		 
 
 		try (
 				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
@@ -42,59 +46,35 @@ public class MemberDAO {
 		
 	}
 	
+	 //회원가입insert
+    public void register(Connection conn, String m_id, String m_pwd, String m_name, String m_phone) {
+       StringBuilder sql = new StringBuilder();
+       sql.append(" insert into member_g3(                ");
+       sql.append("                         m_id            ");
+       sql.append("                         ,m_level            ");
+       sql.append("                         ,m_name            ");
+       sql.append("                         ,m_pwd            ");
+       sql.append("                         ,m_phone         ");
+       sql.append("                         ,m_date         ");
+       sql.append("                          )                ");
+       sql.append(" values ( ?,0,?,?, ?, sysdate()  ) ");
+       
+       try(
+          PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+             ){
+          
+       
+          pstmt.setString(1, m_id);
+          pstmt.setString(2, m_name);
+          pstmt.setString(3, m_pwd);
+          pstmt.setString(4, m_phone);
+          pstmt.executeUpdate();
+          
+       }catch(SQLException e) {
+          System.out.println(e);
+          }
+    }
 
-	public int Check(Connection conn, String m_id) {
-		PreparedStatement pstmt=null;
-		ResultSet rs = null;
-		String sql = "SELECT * FROM USER WHERE USERID = ?";
-		try{
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m_id);
-			rs = pstmt.executeQuery();
-			if( rs.next()) {
-				return 0; //이미 존재하는 회원
-			}
-			else {
-				return 1; //가입가능한 회원 아이디 
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(rs !=null) rs.close();
-				if(pstmt !=null) pstmt.close();
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return -1;
-	}
-	
-	public int register(Connection conn, MemberDTO member) {
-		
-		PreparedStatement pstmt=null;
-		ResultSet rs = null;
-		String sql = "INSERT INTO MEMBER VALUES (?,?,?,?)";
-		try{
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,member.getM_id());
-			pstmt.setString(2,member.getM_pwd());
-			pstmt.setString(1,member.getM_name());
-			pstmt.setString(1,member.getM_phone());
-			return pstmt.executeUpdate();
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(rs !=null) rs.close();
-				if(pstmt !=null) pstmt.close();
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return -1;
-	}
 	
 	
 }

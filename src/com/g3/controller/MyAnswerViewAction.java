@@ -11,7 +11,7 @@ import com.g3.comm.Action;
 import com.g3.comm.Forward;
 import com.g3.service.QuestionService;
 
-public class AnswerViewAction implements Action {
+public class MyAnswerViewAction implements Action {
 
 	@Override
 	public Forward execute(HttpServletRequest request, HttpServletResponse response)
@@ -36,7 +36,7 @@ public class AnswerViewAction implements Action {
 		
 		Forward forward = new Forward();
 		forward.setForward(true);
-		forward.setPath("WEB-INF/question/questiondetail.jsp");
+		forward.setPath("WEB-INF/myPage/myQuestionDetail.jsp");
 		return forward;
 	}
 

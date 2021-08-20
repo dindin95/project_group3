@@ -2,18 +2,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 
 <jsp:include page="../includes/header.jsp" />
 
 <c:set var="dto" value="${requestScope.dto }"></c:set>
+<c:set var="list" value="${requestScope.list }"></c:set>
    
    <%
    	QuestionDTO dto = (QuestionDTO)request.getAttribute("dto");
@@ -21,11 +25,11 @@
    
    <%
    		String m_id = (String) session.getAttribute("m_id");
-   
-   int result =(Integer)request.getAttribute("result");
-  
    %>
-
+   
+   <%
+		if(m_id.equals(dto.getM_id())) {%>
+   
    <br>
      <!-- 게시물 내용 출력  -->
      <div class="container my-1">
@@ -47,9 +51,8 @@
      		</table>
      </div>
   </div>
-     
- 
-   
+  
+
  		<!-- ======댓글 테이블 ================= -->
  		
  		 <div class="container my-1">
@@ -84,17 +87,23 @@
     </div>
     
   
-
-			
+  
   
 <!-- 버튼 생성 -->
 			<div class="row text-center" style="width: 100%">
 				<div style="width: 100%; float:none; margin:0 auto" >
-					<input type="button" class="btn btn-primary" onclick="location.href='questiondelete.do?q_no=<%=dto.getQ_no() %>'" value="삭제">
-					<input type="submit" class="btn btn-primary" onclick="location.href='questionmodify.do?q_no=<%=dto.getQ_no() %>'" value="수정">
-					<input type="button" class="btn btn-primary" onclick="location.href='question.do'" value="목록">
+					<input type="button" class="btn btn-primary" onclick="location.href='myQuestionDelete.do?q_no=<%=dto.getQ_no() %>'" value="삭제">
+					<input type="submit" class="btn btn-primary" onclick="location.href='myQuestionModify.do?q_no=<%=dto.getQ_no() %>'" value="수정">
+					<input type="button" class="btn btn-primary" onclick="location.href='myQuestion.do?m_id=<%=dto.getM_id() %>'" value="목록">
 				</div>
 			</div>
+			
+			<% } else{ %>
+				<script>
+					alert("사용자의 글이 아니므로 상세 볼 수 없습니다.");
+					location.href = "myQuestion.do";
+				</script>
+			<%} %>
 			
 			
 <script>
@@ -106,58 +115,57 @@ $(document).ready(function(){
 	
 	$.ajax({
 		
-	url:'answerView.data'
-   ,method:'post'
-   ,data:{'q_no':q_qno}
-   ,dataType:'json'
-   ,success : function(data){
-	   console.log('성공');
-	   
-	   $.each(data,function(index,item){
+		url:'answerView.data'
+	   ,method:'post'
+	   ,data:{'q_no':q_qno}
+	   ,dataType:'json'
+	   ,success : function(data){
+		   console.log('성공');
+		   
+		   $.each(data,function(index,item){
 
+			
+	   let result =" ";
+	   result += "<br><h3>"+item.a_content+"</h3>";
+	   result +="<style='text-align: right, font-size: small'>"+ item.a_writeDate + "<br>작성자" + item.m_id;
+	   result+="<button class='btn btn-primary btn-sm' onclick=answerRemove("+item.a_no+ ","+item.q_no+")>삭제</button>";
+
+	 
+	   
+	   
+	   $('#replyList').append(result);
+	   
+		   
+		   });
 		
-   let result =" ";
-   result += "<br><h3>"+item.a_content+"</h3>";
-   result +="<style='text-align: right, font-size: small'>"+ item.a_writeDate + "<br>작성자" + item.m_id;
-   result+="<button class='btn btn-primary btn-sm' onclick=answerRemove("+item.a_no+ ","+item.q_no+")>삭제</button>";
-
- 
-   
-   
-   $('#replyList').append(result);
-   
-	   
-	   });
-	
-  
-   },error:function(xhr){
-	   console.log('실패');
-	   console.log(xhr);
-   }
-	
-	});
-	
-	
-	
-});
-
-
-function answerRemove(a_no,q_no){
-	 console.log(a_no);
-	   console.log(q_no);
 	  
-	   location.href="answerRemove.do?a_no="+a_no+"&q_no="+q_no;
-}
+	   },error:function(xhr){
+		   console.log('실패');
+		   console.log(xhr);
+	   }
+		
+		});
+		
+		
+		
+	});
+
+
+	function answerRemove(a_no,q_no){
+		 console.log(a_no);
+		   console.log(q_no);
+		  
+		   location.href="answerRemove.do?a_no="+a_no+"&q_no="+q_no;
+	}
 
 
 
-</script>			
-<jsp:include page="../includes/footer.jsp" />
+	</script>			
+	<jsp:include page="../includes/footer.jsp" />
 
-</body>
+	</body>
 
 
-</html>
-
+	</html>
 
 

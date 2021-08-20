@@ -64,6 +64,8 @@ public class AnswerViewServlet extends HttpServlet {
 
 		response.setCharacterEncoding("utf-8");
 	
+		System.out.println("?????????????????  ");
+		
 		
 		int qno = Integer.parseInt(request.getParameter("q_no"));
 		

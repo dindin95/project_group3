@@ -74,12 +74,7 @@ if(Msg == null){
                 
                 <div class="pull-right">
                   <h6>
-                    <a href="#pablo" class="link">아직 회원이 아니신가요? "회원가입창 연결 "</a>	<br>
-                  </h6>
-                </div>
-                <div class="pull-right">
-                  <h6>
-                    <a href="#pablo" class="link">아이디 ㅣ 비밀번호찾기 링트 연결!!</a>	<br>
+                    <a href="memberform.do" class="link">아직 회원이 아니신가요? 회원가입</a>	<br>
                   </h6>
                 </div>
                 </div>
