@@ -19,7 +19,7 @@ public class MyPageModifyAction implements Action {
 	public Forward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		 
 		request.setCharacterEncoding("utf-8");
 		
 		HttpSession session =request.getSession();
