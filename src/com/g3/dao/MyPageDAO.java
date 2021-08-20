@@ -140,7 +140,7 @@ public class MyPageDAO {
 		 sql.append("                            ,m_id   	                                                    	 ");
 		 sql.append("                            ,bo_date   	                                                     ");
 		 sql.append("                            ,bo_room     														 ");
-		 sql.append("                            ,ABS(startTime- endTime)  as time       							 ");
+		 sql.append("                            ,bo_persons       													 ");
 		 sql.append("                   from booking_g3 a       													 ");
 		 sql.append("                   join time_g3 b       														 ");
 		 sql.append("                   on a.t_no = b.t_no      													 ");
@@ -172,7 +172,7 @@ public class MyPageDAO {
 				  dto.setBo_no(rs.getInt("bo_no"));
 				  dto.setBo_date(rs.getDate("bo_date"));
 				  dto.setBo_room(rs.getInt("bo_room"));
-				  dto.setTime(rs.getInt("time"));
+				  dto.setBo_persons(rs.getInt("bo_persons"));
 				  dto.setM_id(rs.getString("m_id"));
 				  
 				list.add(dto);

@@ -9,8 +9,15 @@ public class MybookingDTO {
 	private String m_id;
 	private int bo_room;
 	private int time;
+	private int bo_persons;
 	
 	
+	public int getBo_persons() {
+		return bo_persons;
+	}
+	public void setBo_persons(int bo_persons) {
+		this.bo_persons = bo_persons;
+	}
 	public int getBo_no() {
 		return bo_no;
 	}
