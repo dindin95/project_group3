@@ -30,6 +30,7 @@
 						<p class="p_style2">음료, 간식 무료 제공</p>
 						<p class="p_style2">휴대폰 충전기, 무릎 담요, 독서대 사용 가능</p>
 						<p class="p_style2">오전 9시 ~ 오후 10시 예약 가능</p>
+						<p class="p_style2">한 타임씩 예약 가능</p>
 					</div>
 				</div>
 			</div>
