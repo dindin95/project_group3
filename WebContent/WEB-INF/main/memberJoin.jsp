@@ -107,7 +107,7 @@ String m_id = (String) session.getAttribute("m_id"); // Object 타입이므로 �
          
            <br>
            
-           <input class="btn btn-primary btn-round btn-lg" type="submit" value="가입완료" style="width: 100%"/>
+           <input class="btn btn-primary btn-round btn-lg" type="submit" value="가입하기" style="width: 100%"/>
            </div>
            </form>
         </div>
