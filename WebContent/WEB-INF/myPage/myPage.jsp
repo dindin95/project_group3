@@ -81,8 +81,8 @@ String m_id = (String) session.getAttribute("m_id"); // Object 타입이므로 �
 		          <a href="myBookingList.do" class="btn btn-primary btn-round btn-lg" style="width: 100%">   예약  현황   </a>		<br>
 		          <a href="myQuestion.do" class="btn btn-primary btn-round btn-lg" style="width: 100%">문의글 작성 내역</a>		<br>
 		        </div>
-		          <a href="logout.do" class="btn btn-primary btn-round btn-lg" style="width: 250px">    로그아웃    </a>		
-		          <a href="#" onclick="memberDelete();"class="btn btn-primary btn-round btn-lg" style="width: 250px">    회원탈퇴    </a>
+		          <a href="logout.do" class="btn btn-primary btn-round btn-lg" style="width: 242px">    로그아웃    </a>		
+		          <a href="#" onclick="memberDelete();"class="btn btn-primary btn-round btn-lg" style="width: 242px">    회원탈퇴    </a>
 	        </div>
         </div>
     </div>
