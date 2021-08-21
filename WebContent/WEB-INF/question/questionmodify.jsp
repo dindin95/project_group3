@@ -34,22 +34,22 @@
 				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 						<tr>
 							<td><input type="text" name="q_no"  style="border:none; background:transparent; text-align:right" size=2   required readonly="readonly" value="<%=dto.getQ_no() %>"></td>
-							<td><input type="text" class="form-control" name="q_title" id="q_title" maxlength="50" value="<%=dto.getQ_title() %>" ></td>
+							<td><input type="text" class="form-control" name="q_title" id="q_title" maxlength="50" value="<%=dto.getQ_title() %>" required="required"></td>
 							<td><input type="text" name="m_id"  style="border:none; background:transparent; text-align:right" size=2   required readonly="readonly" value="<%=dto.getM_id() %>">님</td>
 						</tr>
 				</table>
 				
 				<table class="table" style="text-align: center; border: 1px solid #dddddd">	
 						<tr>
-							<td><textarea class="form-control" name="q_content" id="q_content" maxlength="2048" rows="500" cols="500" style="max-height: 800px"><%=dto.getQ_content() %></textarea></td>
+							<td><textarea class="form-control" name="q_content" id="q_content" maxlength="2048" rows="500" cols="500" style="max-height: 800px" required="required"><%=dto.getQ_content() %></textarea></td>
 						</tr>
 				</table>
 		
 				<!-- 버튼 생성 -->
 			<div class="row text-center" style="width: 100%">
 				<div style="width: 100%; float:none; margin:0 auto" >
-					<input type="button" class="btn btn-primary" onclick="location.href='question.do'" value="취소">
 					<input type="submit" class="btn btn-primary" value="등록">
+					<input type="reset" class="btn btn-primary" value="취소">
 					<input type="button" class="btn btn-primary" onclick="location.href='question.do'" value="목록">
 				</div>
 			</div>
