@@ -41,7 +41,7 @@ String m_id = (String) session.getAttribute("m_id");
 				<!-- 버튼 생성 -->
 			<div class="row text-center" style="width: 100%">
 				<div style="width: 100%; float:none; margin:0 auto" >
-					<input type="button" class="btn btn-primary" onclick="location.href='question.do'" value="취소">
+					<input type="reset" class="btn btn-primary" value="취소">
 					<input type="submit" class="btn btn-primary" value="저장">
 					<input type="button" class="btn btn-primary" onclick="location.href='question.do'" value="목록">
 				</div>
