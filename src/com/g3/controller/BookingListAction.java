@@ -17,7 +17,7 @@ public class BookingListAction implements Action {
 
 		Forward forward = new Forward();
 		forward.setForward(true);
-		forward.setPath("WEB-INF/calender/bookingList.jsp");
+		forward.setPath("WEB-INF/calendar/bookingList.jsp");
 
 		return forward;
 	}

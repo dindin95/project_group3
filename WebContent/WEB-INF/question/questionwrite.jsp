@@ -25,7 +25,7 @@ String m_id = (String) session.getAttribute("m_id");
 			
 				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 						<tr>
-							<td><input type="text" class="form-control" placeholder="제목을 입력하세요" name="q_title" id="q_title" maxlength="50" ></td>
+							<td><input type="text" class="form-control" placeholder="제목을 입력하세요" name="q_title" id="q_title" maxlength="50" required="required"></td>
 							<td><input type="text" name="m_id"  style="border:none; background:transparent; text-align:right; size=5 "  required readonly="readonly" value="<%=m_id%>">님</td>
 							
 						</tr>
@@ -33,7 +33,7 @@ String m_id = (String) session.getAttribute("m_id");
 				
 				<table class="table" style="text-align: center; border: 1px solid #dddddd">	
 						<tr>
-							<td><textarea class="form-control" placeholder="   내용을 입력하세요" name="q_content" id="q_content" maxlength="2048" rows="500" cols="500" style="max-height: 800px"></textarea></td>
+							<td><textarea class="form-control" placeholder="   내용을 입력하세요" name="q_content" id="q_content" maxlength="2048" rows="500" cols="500" style="max-height: 800px" required="required"></textarea></td>
 						</tr>
 				</table>
 				
@@ -42,7 +42,7 @@ String m_id = (String) session.getAttribute("m_id");
 			<div class="row text-center" style="width: 100%">
 				<div style="width: 100%; float:none; margin:0 auto" >
 					<input type="button" class="btn btn-primary" onclick="location.href='question.do'" value="취소">
-					<input type="submit" class="btn btn-primary" value="글쓰기">
+					<input type="submit" class="btn btn-primary" value="저장">
 					<input type="button" class="btn btn-primary" onclick="location.href='question.do'" value="목록">
 				</div>
 			</div>
