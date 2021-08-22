@@ -68,7 +68,7 @@ String m_id = (String) session.getAttribute("m_id"); // Object 타입이므로 �
 				               <td><c:out value="Room C"></c:out></td>
 					</c:if>
 			      
-		    	  <td><a href="mybookingDelete.do?bo_no=${item.bo_no }" class="btn btn-primary btn-round btn-lg" style="height: 20px;display: inline-block;line-height: 0;" >    삭제    </a></td>
+		    	  <td><a href="mybookingDelete.do?bo_no=${item.bo_no }" class="btn btn-primary btn-round btn-lg" style="height: 20px;display: inline-block;line-height: 0;" >    예약취소    </a></td>
 		    	</tr>
 		    </c:forEach>
 		  </tbody>
